@@ -1,0 +1,2953 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINTAXIS PRO | La Oración Simple - 1.º Bachillerato (Edición Extendida)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #131b2e;
+            --bg-card-hover: #1a2540;
+            --bg-glass: rgba(19, 27, 46, 0.85);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --info: #06b6d4;
+            --border: rgba(255, 255, 255, 0.1);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        [data-theme="light"] {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --bg-glass: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #4f46e5;
+            --primary-glow: rgba(79, 70, 229, 0.2);
+            --secondary: #db2777;
+            --accent: #d97706;
+            --success: #059669;
+            --danger: #dc2626;
+            --info: #0891b2;
+            --border: rgba(15, 23, 42, 0.12);
+            --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.65;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* HEADER & HUD */
+        .top-hud {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg-glass);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #fff;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .brand-text h1 {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .brand-text span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hud-stats {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .stat-pill .val {
+            font-family: var(--font-mono);
+            color: var(--accent);
+        }
+
+        .progress-bar-wrap {
+            width: 150px;
+            height: 8px;
+            background: rgba(148, 163, 184, 0.2);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.4s ease;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* MAIN LAYOUT */
+        .app-container {
+            display: grid;
+            grid-template-columns: 290px 1fr;
+            min-height: calc(100vh - 70px);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .nav-group-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            font-weight: 800;
+            padding: 0 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .nav-btn {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 0.75rem 0.9rem;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-main);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.15));
+            border-color: var(--primary);
+            color: var(--text-main);
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .nav-badge {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            font-family: var(--font-mono);
+        }
+
+        .nav-btn.completed .nav-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        /* CONTENT AREA */
+        .main-content {
+            padding: 2rem 2.5rem;
+            overflow-y: auto;
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* TYPOGRAPHY & CARDS */
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 850px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .badge-Synt {
+            display: inline-block;
+            padding: 0.2rem 0.55rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+        }
+
+        .badge-warn {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+
+        .badge-ok {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .badge-err {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .example-box {
+            background: rgba(0, 0, 0, 0.25);
+            border-left: 4px solid var(--primary);
+            padding: 0.9rem 1.1rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 0.85rem 0;
+            font-size: 0.92rem;
+        }
+
+        [data-theme="light"] .example-box {
+            background: #f1f5f9;
+        }
+
+        .example-box strong {
+            color: var(--accent);
+        }
+
+        .alert-pau {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(239, 68, 68, 0.08));
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            margin: 1.25rem 0;
+        }
+
+        .alert-pau h4 {
+            color: var(--accent);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* MODULE PRACTICE ARENA (NEW EMBEDDED EXERCISES PER PAGE) */
+        .practice-arena {
+            background: linear-gradient(145deg, var(--bg-card), rgba(99, 102, 241, 0.07));
+            border: 2px solid rgba(99, 102, 241, 0.35);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .practice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .practice-dots {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .p-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-card-hover);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .p-dot.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.12);
+        }
+
+        .p-dot.done-ok {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+
+        .p-dot.done-err {
+            background: var(--danger);
+            border-color: var(--danger);
+            color: #fff;
+        }
+
+        /* TABLES */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1.25rem 0;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 0.9rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(99, 102, 241, 0.12);
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+        }
+
+        tr:hover td {
+            background: var(--bg-card-hover);
+        }
+
+        /* BUTTONS */
+        .btn {
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.4rem;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card-hover);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
+
+        /* INTERACTIVE LAB: SENTENCE ANALYZER */
+        .sentence-stage {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chunk-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 1.75rem 0;
+        }
+
+        .synt-chunk {
+            background: var(--bg-card-hover);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 110px;
+        }
+
+        .synt-chunk:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .synt-chunk.selected {
+            border-color: var(--accent);
+            background: rgba(245, 158, 11, 0.12);
+            box-shadow: 0 0 18px rgba(245, 158, 11, 0.25);
+        }
+
+        .synt-chunk .chunk-words {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .synt-chunk .chunk-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+        }
+
+        .synt-chunk.tagged .chunk-tag {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .function-palette {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            max-width: 850px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .fn-btn {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.55rem 0.95rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .fn-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* FEEDBACK BOX */
+        .feedback-panel {
+            padding: 1.1rem 1.4rem;
+            border-radius: var(--radius-md);
+            margin-top: 1.25rem;
+            display: none;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .feedback-panel.show {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .feedback-panel.ok {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--success);
+            color: var(--text-main);
+        }
+
+        .feedback-panel.err {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--danger);
+            color: var(--text-main);
+        }
+
+        /* OPTIONS GRID FOR GAMES */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 0.9rem;
+            margin-top: 1.25rem;
+        }
+
+        .option-card {
+            background: var(--bg-card-hover);
+            border: 2px solid var(--border);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.93rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .option-card:hover:not(.disabled) {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .option-card.correct {
+            background: rgba(16, 185, 129, 0.25);
+            border-color: var(--success);
+        }
+
+        .option-card.wrong {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: var(--danger);
+        }
+
+        .option-card.disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        /* ROSCO PASAPALABRA */
+        .rosco-layout {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .rosco-wheel {
+            position: relative;
+            width: 390px;
+            height: 390px;
+            margin: 0 auto;
+        }
+
+        .rosco-letter {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card-hover);
+            border: 2px solid var(--primary);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        }
+
+        .rosco-letter.current {
+            background: var(--accent);
+            border-color: #fff;
+            color: #000;
+            transform: scale(1.25);
+            z-index: 10;
+            box-shadow: 0 0 18px var(--accent);
+        }
+
+        .rosco-letter.hit {
+            background: var(--success);
+            border-color: #34d399;
+            color: #fff;
+        }
+
+        .rosco-letter.miss {
+            background: var(--danger);
+            border-color: #f87171;
+            color: #fff;
+        }
+
+        .rosco-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .rosco-center .big-char {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        /* ACCORDION / TABS */
+        .tabs-bar {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        .tab-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.55rem 1.1rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-pill.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .rosco-layout {
+                grid-template-columns: 1fr;
+            }
+            .rosco-wheel {
+                width: 320px;
+                height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP HUD -->
+    <header class="top-hud">
+        <div class="brand">
+            <div class="brand-logo">Σ</div>
+            <div class="brand-text">
+                <h1>SINTAXIS PRO: LA ORACIÓN SIMPLE</h1>
+                <span>1.º Bachillerato · LOMLOE & NGLE · 162 Retos Interactivos</span>
+            </div>
+        </div>
+
+        <div class="hud-stats">
+            <div class="stat-pill" title="Tiempo de estudio activo">
+                <span>⏱️ Sesión:</span>
+                <span class="val" id="hud-timer">00:00</span>
+            </div>
+            <div class="stat-pill" title="Puntos de Experiencia Sintáctica">
+                <span>✨ XP:</span>
+                <span class="val" id="hud-xp">0</span>
+            </div>
+            <div class="stat-pill" title="Rango actual">
+                <span>🏆 Rango:</span>
+                <span class="val" id="hud-rank">Aprendiz</span>
+            </div>
+            <div class="stat-pill">
+                <span>Progreso:</span>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" id="hud-progress"></div>
+                </div>
+                <span class="val" id="hud-pct">0%</span>
+            </div>
+            <button class="btn-icon" id="btn-sound" title="Activar/Desactivar efectos de sonido">🔊</button>
+            <button class="btn-icon" id="btn-theme" title="Cambiar modo oscuro/claro">🌓</button>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div>
+                <div class="nav-group-title">📚 Bloque I: Teoría + Práctica (60m)</div>
+                <ul class="nav-list">
+                    <li><button class="nav-btn active" id="nav-t0" onclick="switchView('view-intro', this)"><span>0. Hoja de Ruta + Test</span><span class="nav-badge" id="badge-t0">0/6</span></button></li>
+                    <li><button class="nav-btn" id="nav-t1" onclick="switchView('view-t1', this)"><span>1. Sujeto e Impersonalidad</span><span class="nav-badge" id="badge-t1">0/10</span></button></li>
+                    <li><button class="nav-btn" id="nav-t2" onclick="switchView('view-t2', this)"><span>2. Argumentos: CD, CI, CRég</span><span class="nav-badge" id="badge-t2">0/10</span></button></li>
+                    <li><button class="nav-btn" id="nav-t3" onclick="switchView('view-t3', this)"><span>3. Atributo vs. Predicativo</span><span class="nav-badge" id="badge-t3">0/10</span></button></li>
+                    <li><button class="nav-btn" id="nav-t4" onclick="switchView('view-t4', this)"><span>4. Los 7 Valores de «SE»</span><span class="nav-badge" id="badge-t4">0/10</span></button></li>
+                    <li><button class="nav-btn" id="nav-t5" onclick="switchView('view-t5', this)"><span>5. Clasificación y Glosario</span><span class="nav-badge" id="badge-t5">0/10</span></button></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="nav-group-title">🎮 Bloque II: Grandes Retos (60m)</div>
+                <ul class="nav-list">
+                    <li><button class="nav-btn" id="nav-g1" onclick="switchView('view-g1', this)"><span>🔬 Laboratorio Sintáctico</span><span class="nav-badge" id="badge-g1">0/20</span></button></li>
+                    <li><button class="nav-btn" id="nav-g2" onclick="switchView('view-g2', this)"><span>⚖️ El Juez del «SE»</span><span class="nav-badge" id="badge-g2">0/25</span></button></li>
+                    <li><button class="nav-btn" id="nav-g3" onclick="switchView('view-g3', this)"><span>🕵️ Cazador de Impersonales</span><span class="nav-badge" id="badge-g3">0/20</span></button></li>
+                    <li><button class="nav-btn" id="nav-g4" onclick="switchView('view-g4', this)"><span>⚡ Trivial PAU / 1.º Bach</span><span class="nav-badge" id="badge-g4">0/30</span></button></li>
+                    <li><button class="nav-btn" id="nav-g5" onclick="switchView('view-g5', this)"><span>🎡 El Gran Rosco Sintáctico</span><span class="nav-badge" id="badge-g5">0/25</span></button></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- MAIN VIEWS -->
+        <main class="main-content">
+
+            <!-- VIEW 0: INTRO & HOJA DE RUTA + TEST DIAGNÓSTICO -->
+            <section id="view-intro" class="view-section active">
+                <div class="section-header">
+                    <span class="section-tag">Lengua Castellana y Literatura · 1.º Bachillerato</span>
+                    <h2 class="section-title">Dominio Integral de la Oración Simple</h2>
+                    <p class="section-subtitle">Módulo interactivo de alto rendimiento diseñado según los estándares de la <strong>Nueva Gramática de la Lengua Española (NGLE)</strong> y orientado a las pruebas de acceso a la universidad.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-title">⏳ Planificación de 120 Minutos</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted);">Esta aplicación está calibrada para completarse en <strong>dos sesiones de 60 minutos</strong> (o una sesión intensiva de 2 horas):</p>
+                        <ul style="margin-top:0.75rem; padding-left:1.2rem; font-size:0.88rem;">
+                            <li><strong>Hora 1 (Teoría + Entrenadores por apartado):</strong> 5 módulos teóricos con <strong>56 ejercicios rápidos integrados</strong> al pie de cada página.</li>
+                            <li><strong>Hora 2 (Grandes Retos):</strong> 5 juegos de profundización (<strong>120 ejercicios adicionales</strong>).</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">🎯 Metodología «Zero-Typing»</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted);">Olvídate de perder tiempo escribiendo o de que un acento mal puesto invalide tu respuesta. Todos los retos funcionan por <strong>reconocimiento estructural, selección táctil y toma de decisiones</strong>.</p>
+                        <div class="example-box" style="margin-top:0.8rem;">
+                            Cada acierto suma <strong>XP</strong> y desbloquea rangos: desde <em>Aprendiz</em> hasta <em>Catedrático de la RAE</em>.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">📊 Tu Panel de Progreso</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted);">Tu avance se guarda automáticamente en el navegador. Puedes reiniciar tus estadísticas cuando quieras:</p>
+                        <div style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+                            <button class="btn" onclick="switchView('view-t1', document.getElementById('nav-t1'))">Comenzar Bloque I →</button>
+                            <button class="btn btn-secondary" onclick="resetAllProgress()">🗑️ Reiniciar Datos</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🗺️ Mapa Estructural de la Oración Simple (Arquitectura NGLE)</div>
+                    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem;">Antes de entrar en materia, recuerda la distinción fundamental de la gramática moderna entre <strong>Argumentos</strong> (exigidos por el significado del verbo) y <strong>Adjuntos</strong> (no exigidos, aportan información circunstancial):</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nivel</th>
+                                    <th>Constituyente</th>
+                                    <th>Estatuto Semántico</th>
+                                    <th>Pruebas de Reconocimiento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Extraoracional</strong></td>
+                                    <td>Vocativo / Modificador Oracional</td>
+                                    <td>Externo al Dictum</td>
+                                    <td>Aislado por pausas (comas). Modifica a toda la enunciación: <em>Sinceramente, Juan, no lo sé.</em></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Relación Predicativa</strong></td>
+                                    <td>Sujeto (SN)</td>
+                                    <td>Argumento externo</td>
+                                    <td>Concordancia obligatoria en <strong>número y persona</strong> con el verbo núcleo.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Predicado (SV)</strong></td>
+                                    <td>CD / CI / C. Régimen</td>
+                                    <td>Argumentos internos</td>
+                                    <td>Sustitución por clíticos (<em>lo/la, le/se</em>) o permanencia de la preposición con tónico (<em>en él</em>).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Predicación Secundaria</strong></td>
+                                    <td>Atributo / C. Predicativo</td>
+                                    <td>Predicados nominales/adjetivales</td>
+                                    <td>Doble incidencia o conmutación por <em>lo</em> (Atributo) vs. adverbio <em>así</em> (Predicativo).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Periferia Verbal</strong></td>
+                                    <td>Complementos Circunstanciales</td>
+                                    <td>Adjuntos</td>
+                                    <td>Libertad posicional, sustituibles por adverbios (<em>allí, entonces, así</em>), suprimibles.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ENTRENADOR PÁGINA 0: TEST DIAGNÓSTICO INICIAL -->
+                <div class="practice-arena" id="arena-t0"></div>
+            </section>
+
+            <!-- VIEW T1: SUJETO E IMPERSONALIDAD -->
+            <section id="view-t1" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Módulo Teórico 1 · Tiempo estimado: 15 min</span>
+                    <h2 class="section-title">1. El Sujeto y las Oraciones Impersonales</h2>
+                    <p class="section-subtitle">Cómo aplicar la prueba de la concordancia sin caer en las trampas de los verbos tipo «gustar» ni en las falsas preposiciones de sujeto.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">🔍 La Ley Inquebrantable de la Concordancia</div>
+                        <p>El <strong>Sujeto</strong> es el sintagma nominal (SN) cuyo núcleo concuerda obligatoriamente en <strong>número y persona</strong> con el verbo. Jamás preguntes <em>«¿Quién realiza la acción?»</em>, porque fracasarás en las oraciones pasivas y en los verbos de afección psíquica.</p>
+                        <div class="example-box">
+                            <strong>Algoritmo infalible en 3 pasos:</strong><br>
+                            1. Localiza el verbo conjugado: <em>Me encantan <u>esos discos antiguos</u>.</em><br>
+                            2. Cambia el número del verbo (de plural a singular): <em>Me encanta...</em><br>
+                            3. Observa qué sintagma te obliga el oído a cambiar: <em><u>ese disco antiguo</u></em> → <strong>¡Ese es el Sujeto!</strong>
+                        </div>
+                        <div class="alert-pau">
+                            <h4>⚠️ Trampa Clásica en 1.º de Bachillerato</h4>
+                            <p style="font-size:0.88rem;">En <em>«A los diputados les preocupa la inflación»</em>, el sujeto <strong>NO</strong> es «A los diputados» (ningún sujeto lleva la preposición <em>a</em>, eso es CI). El sujeto es <strong>«la inflación»</strong> (<em>les preocupan las inflaciones</em>).</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">🧩 ¿Sujeto con preposición? El caso de «Entre» y «Hasta»</div>
+                        <p>Regla de oro: <strong>Un Sintagma Preposicional (SPrep) nunca puede ser Sujeto</strong>. Pero, ¿qué ocurre en oraciones como <em>«Entre tú y yo montaremos el armario»</em> o <em>«Hasta los niños lo saben»</em>?</p>
+                        <div class="example-box">
+                            • <strong>«Hasta» / «Incluso»:</strong> En <em>«Hasta los niños lo saben»</em>, la palabra <em>hasta</em> no funciona como preposición, sino como un <strong>adverbio focalizador (o marcador de inclusión)</strong>. Por tanto, todo el bloque es un SN Sujeto.<br><br>
+                            • <strong>«Entre»:</strong> En <em>«Entre Luis y Ana limpiaron el aula»</em>, según la NGLE, el sujeto es <strong>tácito/omitido</strong> (<em>Ellos</em>) y <em>«Entre Luis y Ana»</em> es un <strong>SPrep Complemento Circunstancial de Cooperación (o Predicativo)</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">🚫 Taxonomía Completa de las Oraciones Impersonales (Sujeto Cero)</div>
+                    <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:1rem;">No confundas el <strong>Sujeto Omitido / Tácito / Elíptico</strong> (que sí existe y se recupera por la desinencia verbal: <em>Llegamos tarde → Nosotros</em>) con la <strong>Impersonalidad Sintáctica</strong> (donde el verbo es incapaz de admitir sujeto léxico). Se dividen en 5 grandes grupos:</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tipo de Impersonal</th>
+                                    <th>Verbos y Estructura</th>
+                                    <th>Ejemplo Analizado</th>
+                                    <th>Trampa habitual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="badge-Synt">1. Meteorológicas (Unipersonales)</span></td>
+                                    <td><em>Llover, nevar, granizar, amanecer, tronar...</em> (en 3.ª pers. sing.).</td>
+                                    <td><em><strong>Amaneció</strong> muy nublado en la sierra.</em></td>
+                                    <td>Si tienen uso metafórico o personal, sí llevan sujeto: <em>Amanecimos en Córdoba (Suj: Nosotros)</em>; <em>Le llovieron críticas (Suj: críticas)</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge-Synt">2. Gramaticalizadas</span></td>
+                                    <td>Verbos <strong>HABER, HACER, SER, BASTAR, SOBRAR</strong> inmovilizados en 3.ª pers. sing.</td>
+                                    <td><em><strong>Había</strong> demasiadas quejas.</em><br><em><strong>Hace</strong> tres años de aquello.</em><br><em><strong>Es</strong> muy tarde / <strong>Basta</strong> con tu palabra.</em></td>
+                                    <td>En <em>«Había fiestas»</em>, «fiestas» es el <strong>CD</strong> (<em>Las había</em>), jamás el sujeto. Decir <em>*Habían fiestas</em> es un vulgarismo grave.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge-Synt">3. Impersonales Reflejas (con SE)</span></td>
+                                    <td><strong>SE + Verbo en 3.ª pers. singular</strong> (con verbo intransitivo, copulativo o transitivo con CD de persona con «a»).</td>
+                                    <td><em>Aquí <strong>se vive</strong> de maravilla.</em><br><em><strong>Se premió</strong> a los campeones.</em></td>
+                                    <td>Si el verbo lleva un SN sin preposición y concuerda en plural (<em>Se venden pisos</em>), no es impersonal: es <strong>Pasiva Refleja</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge-Synt">4. Eventuales u Ocasionales</span></td>
+                                    <td>Verbo en 3.ª pers. plural sin referente real conocido ni específico (o con <em>uno/a, tú</em> genérico).</td>
+                                    <td><em><strong>Llaman</strong> a la puerta.</em> (Un solo timbrazo, no sabemos quién es).<br><em><strong>Dicen</strong> que subirán los tipos.</em></td>
+                                    <td>La NGLE las denomina impersonales semánticas con sujeto genérico/indeterminado no expreso.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge-Synt">5. Con «oler» / «estar» climáticos</span></td>
+                                    <td>Construcciones locativas o atmosféricas con <em>está, huele a, da gusto</em>.</td>
+                                    <td><em>En este callejón <strong>huele</strong> a jazmín.</em> (SPrep C. Régimen).</td>
+                                    <td>Si hay elemento que causa el olor, sí hay sujeto: <em>El patio huele a jazmín</em>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ENTRENADOR MÓDULO 1 (10 EJERCICIOS) -->
+                <div class="practice-arena" id="arena-t1"></div>
+
+                <div style="text-align:right; margin-top:1rem;">
+                    <button class="btn btn-success" onclick="markTheoryRead('t1', 'view-t2', 'nav-t2')">✓ Módulo 1 Dominado (+50 XP) → Pasar al Módulo 2</button>
+                </div>
+            </section>
+
+            <!-- VIEW T2: ARGUMENTOS Y ADJUNTOS -->
+            <section id="view-t2" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Módulo Teórico 2 · Tiempo estimado: 15 min</span>
+                    <h2 class="section-title">2. Complementos Argumentales y Adjuntos</h2>
+                    <p class="section-subtitle">Distinción quirúrgica entre Complemento Directo (CD), Complemento Indirecto (CI), Complemento de Régimen (CRég), Agente (CAg) y Circunstanciales (CC).</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">🎯 El Complemento Directo (CD)</div>
+                        <p>Es el argumento interno de los verbos transitivos. Adopta forma de <strong>SN</strong> (<em>Compré el periódico</em>) o de <strong>SPrep con «a»</strong> cuando designa a seres animados/personificados (<em>Vi a tu hermana</em>).</p>
+                        <div class="example-box">
+                            <strong>Las 2 Pruebas de Verificación:</strong><br>
+                            1. <strong>Pronominalización por clíticos acusativos:</strong> <em>lo, la, los, las</em>.<br>
+                            2. <strong>Transformación a Pasiva Perifrástica:</strong> El CD pasa a ser el <strong>Sujeto Paciente</strong>: <em>Los arquitectos diseñaron <u>el puente</u> → <u>El puente</u> fue diseñado por los arquitectos.</em>
+                        </div>
+                        <div class="alert-pau">
+                            <h4>⚠️ Cuidado con el Leísmo y los verbos de medida</h4>
+                            <p style="font-size:0.88rem;">La RAE acepta el leísmo de persona masculino singular (<em>A Juan le/lo vi ayer</em>). Para no confundirte con un CI, pasa siempre la oración al <strong>femenino</strong>: <em>A María <strong>la</strong> vi ayer</em> → Como es «la», es <strong>CD</strong>.<br>
+                            Los verbos de peso, medida, duración o precio (<em>Pesa tres kilos, Cuesta diez euros, Mide dos metros</em>) llevan <strong>CD de medida</strong> (sustituibles por <em>los</em>).</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">📩 El Complemento Indirecto (CI) y los Dativos</div>
+                        <p>Siempre es un <strong>SPrep encabezado por «a»</strong> (salvo que sea un pronombre átono: <em>me, te, se, le, les, nos, os</em>). A diferencia del viejo error escolar, <strong>el CI jamás lleva la preposición «para»</strong> (en <em>Compré flores para Ana</em>, «para Ana» es CC de Beneficiario o Destinatario según la NGLE).</p>
+                        <div class="example-box">
+                            <strong>Sustitución:</strong> Se conmuta por <strong>le / les</strong> (o se convierte en <strong>se</strong> si le sigue <em>lo/la/los/las</em>: <em>Le di el libro → <strong>Se</strong> lo di</em>).<br><br>
+                            <strong>El Dativo Ético o de Interés (Superfluo):</strong> Es un pronombre átono no argumental que aporta énfasis afectivo y puede eliminarse sin alterar la oración: <em>El niño no <strong>me</strong> come nada</em> / <em><strong>Se</strong> bebió tres cafés de golpe</em> (Dativo aspectual).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">🔗 El Complemento de Régimen (CRég o Suplemento)</div>
+                        <p>Es un <strong>SPrep argumental</strong> cuya preposición viene exigida («regida») por el verbo, un sustantivo o un adjetivo: <em>confiar <strong>en</strong>, arrepentirse <strong>de</strong>, carecer <strong>de</strong>, optar <strong>a</strong>, consistir <strong>en</strong>, aspirar <strong>a</strong>...</em></p>
+                        <div class="example-box">
+                            <strong>Prueba de oro:</strong> Al sustituir el término por un pronombre tónico (<em>eso, él, ella</em>), <strong>la preposición se mantiene intacta</strong>:<br>
+                            <em>Los socios hablaron <u>de la fusión</u> → Hablaron <strong>de eso</strong>.</em>
+                        </div>
+                        <p style="font-size:0.88rem; margin-top:0.6rem;"><strong>¿Pueden coexistir CD y CRég? ¡Sí!</strong> Con verbos de colocación o transferencia: <em>Llenaron <u>la copa</u> (CD) <u>de agua</u> (CRég)</em> / <em>Informaron <u>al juez</u> (CD) <u>del delito</u> (CRég)</em>.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">🧭 CC (Adjuntos) vs. Modificadores Oracionales</div>
+                        <p>Los <strong>Complementos Circunstanciales (CC)</strong> son adjuntos del verbo (Tiempo, Lugar, Modo, Cantidad, Causa, Finalidad, Instrumento, Compañía, Medio). Pero en 1.º de Bachillerato es obligatorio distinguirlos de los <strong>Modificadores Oracionales (MO)</strong>:</p>
+                        <div class="example-box">
+                            • <em>Los alumnos resolvieron el examen <strong>felizmente</strong>.</em> → <strong>CC de Modo</strong> (modifica al verbo: lo resolvieron <em>así</em>).<br>
+                            • <em><strong>Felizmente</strong>, los alumnos resolvieron el examen.</em> → <strong>Modificador Oracional (Adjunto Periférico)</strong>: va entre pausas y expresa la valoración del hablante sobre el hecho completo (<em>Es una suerte que...</em>).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ENTRENADOR MÓDULO 2 (10 EJERCICIOS) -->
+                <div class="practice-arena" id="arena-t2"></div>
+
+                <div style="text-align:right; margin-top:1rem;">
+                    <button class="btn btn-success" onclick="markTheoryRead('t2', 'view-t3', 'nav-t3')">✓ Módulo 2 Dominado (+50 XP) → Pasar al Módulo 3</button>
+                </div>
+            </section>
+
+            <!-- VIEW T3: ATRIBUTO VS PREDICATIVO -->
+            <section id="view-t3" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Módulo Teórico 3 · Tiempo estimado: 15 min</span>
+                    <h2 class="section-title">3. Atributo vs. Complemento Predicativo (PVO)</h2>
+                    <p class="section-subtitle">La frontera más preguntada en los exámenes de Bachillerato: verbos copulativos, semicopulativos, predicativos de sujeto y predicativos de CD.</p>
+                </div>
+
+                <div class="card" style="margin-bottom:1.5rem;">
+                    <div class="card-title">⚖️ Tabla Comparativa Definitiva: Atributo, Predicativo y CC de Modo</div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rasgo Gramatical</th>
+                                    <th>Atributo (ATR)</th>
+                                    <th>Complemento Predicativo (PVO)</th>
+                                    <th>CC de Modo (CCM)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Tipo de Verbo</strong></td>
+                                    <td><strong>Copulativos</strong> (<em>ser, estar, parecer</em>) o <strong>Semicopulativos</strong> (<em>volverse, ponerse, quedarse, resultar...</em>).</td>
+                                    <td>Verbos <strong>Predicativos plenos</strong> (<em>llegar, mirar, elegir, nombrar, traer, dormir...</em>).</td>
+                                    <td>Verbos <strong>Predicativos plenos</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Categoría habitual</strong></td>
+                                    <td>SAdj, SN, SPrep, SAdv.</td>
+                                    <td><strong>SAdj o SN</strong> (y a veces SPrep: <em>Trabaja de camarero</em>).</td>
+                                    <td><strong>SAdv</strong> (<em>rápidamente, bien</em>), SPrep (<em>con calma</em>).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Concordancia</strong></td>
+                                    <td>Concuerda en género y número con el Sujeto.</td>
+                                    <td><strong>¡SÍ!</strong> Concuerda en género y número con el <strong>Sujeto</strong> o con el <strong>CD</strong>.</td>
+                                    <td><strong>¡NUNCA!</strong> Es invariable en género y número.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sustitución Pronominal</strong></td>
+                                    <td>Por el pronombre neutro <strong>LO</strong> (con <em>ser, estar, parecer</em>): <em>Ana es médica → Ana <strong>lo</strong> es</em>.</td>
+                                    <td>Por el adverbio <strong>ASÍ</strong> o el demostrativo <strong>ESO</strong> (nunca por <em>lo</em>): <em>Ana llegó cansada → Llegó <strong>así</strong></em>.</td>
+                                    <td>Por el adverbio <strong>ASÍ</strong>: <em>Ana llegó deprisa → Llegó <strong>así</strong></em>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">🧪 Los Verbos Semicopulativos (NGLE)</div>
+                        <p>Son verbos originalmente plenos que, en ciertos contextos, <strong>pierden su significado léxico</strong> de acción o movimiento y pasan a significar «estado» o «cambio de estado» (equivalen a <em>estar</em> o <em>volverse</em>). En la NGLE, su complemento es un <strong>Atributo</strong>:</p>
+                        <div class="example-box">
+                            • <em>Juan <strong>se puso</strong> nervioso.</em> (= pasó a estar nervioso → <strong>Atributo</strong>).<br>
+                            • <em>Juan <strong>puso</strong> los libros en la mesa.</em> (Verbo pleno → <em>los libros</em> es CD).<br>
+                            • <em>La reunión <strong>resultó</strong> un fracaso / <strong>Se quedó</strong> perplejo / <strong>Anda</strong> preocupado.</em> → Todos llevan <strong>Atributo</strong>.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">🔀 Predicativo del Sujeto vs. Predicativo del CD</div>
+                        <p>El Complemento Predicativo (PVO) realiza una <strong>doble predicación</strong>: modifica al verbo y, a la vez, atribuye una propiedad al Sujeto o al CD:</p>
+                        <div class="example-box">
+                            1. <strong>PVO del Sujeto:</strong> <em>Los atletas cruzaron la meta <strong>exhaustos</strong>.</em> (Concuerda con <em>los atletas</em>).<br>
+                            2. <strong>PVO del CD:</strong> <em>Me devolvieron <u>la camisa</u> <strong>rota</strong>.</em> / <em>Nombraron <u>delegada</u> a <u>Lucía</u>.</em><br>
+                            <strong>¿Cómo comprobar si es PVO del CD o un CN dentro del CD?</strong><br>
+                            Pronominaliza el CD por <em>lo/la</em>. Si el adjetivo <strong>se queda fuera</strong>, es PVO del CD: <em>Me <strong>la</strong> devolvieron <strong>rota</strong></em>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ENTRENADOR MÓDULO 3 (10 EJERCICIOS) -->
+                <div class="practice-arena" id="arena-t3"></div>
+
+                <div style="text-align:right; margin-top:1rem;">
+                    <button class="btn btn-success" onclick="markTheoryRead('t3', 'view-t4', 'nav-t4')">✓ Módulo 3 Dominado (+50 XP) → Pasar al Módulo 4</button>
+                </div>
+            </section>
+
+            <!-- VIEW T4: LOS 7 VALORES DE SE -->
+            <section id="view-t4" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Módulo Teórico 4 · Tiempo estimado: 15 min</span>
+                    <h2 class="section-title">4. Los 7 Valores del Morfema / Pronombre «SE»</h2>
+                    <p class="section-subtitle">El punto neurálgico del análisis sintáctico en 1.º y 2.º de Bachillerato. Distingue de un vistazo cuándo «SE» tiene función sintáctica (CD/CI) y cuándo es parte del verbo o marca oracional.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">🟢 GRUPO A: «SE» CON Función Sintáctica (CD o CI)</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.8rem;">En estos 4 casos, «SE» es un pronombre personal átono y desempeña función de <strong>CD</strong> o de <strong>CI</strong>:</p>
+                        <div class="example-box">
+                            <strong>1. «SE» variante de LE/LES (Alomorfo de CI):</strong><br>
+                            Aparece siempre delante de <em>lo, la, los, las</em> para evitar la cacofonía <em>*le lo</em>. Funciona siempre como <strong>CI</strong>.<br>
+                            • <em>Entregué el acta al director → <strong>Se</strong> (CI) la (CD) entregué.</em>
+                        </div>
+                        <div class="example-box">
+                            <strong>2. «SE» Reflexivo (CD o CI):</strong><br>
+                            El sujeto realiza y recibe la acción sobre sí mismo. Admite el refuerzo <em><strong>«a sí mismo»</strong></em>.<br>
+                            • <em>Marina <strong>se</strong> (CD) peina.</em> (No hay otro CD).<br>
+                            • <em>Marina <strong>se</strong> (CI) peina <u>el flequillo</u> (CD).</em> (Al haber ya un CD, «se» pasa a ser CI).
+                        </div>
+                        <div class="example-box">
+                            <strong>3. «SE» Recíproco (CD o CI):</strong><br>
+                            Dos o más sujetos intercambian la acción. Admite el refuerzo <em><strong>«mutuamente / el uno al otro»</strong></em>.<br>
+                            • <em>Los capitanes <strong>se</strong> (CD) abrazaron.</em><br>
+                            • <em>Los capitanes <strong>se</strong> (CI) intercambiaron <u>los banderines</u> (CD).</em>
+                        </div>
+                        <div class="example-box">
+                            <strong>4. «SE» Dativo Ético o Aspectual (CI / Dativo superfluo):</strong><br>
+                            Se puede <strong>eliminar de la oración</strong> sin que cambie el significado ni la gramaticalidad. Suele ir con verbos de consumo (<em>comerse, beberse, leerse</em>).<br>
+                            • <em>El alumno <strong>se</strong> leyó la novela en una tarde → El alumno leyó la novela...</em>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">🟣 GRUPO B: «SE» SIN Función de Complemento (Morfema)</div>
+                        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.8rem;">En estos 3 casos, «SE» no es ni CD ni CI; se analiza junto al núcleo verbal o como marca de construcción:</p>
+                        <div class="example-box">
+                            <strong>5. «SE» Morfema Verbal Pronominal (o Intransitivizador):</strong><br>
+                            Forma parte intrínseca del verbo. A veces el verbo no existe sin él (<em>arrepentirse, quejarse, jactarse, atreverse, suicidarse</em>) o cambia su significado/transitividad (<em>ir / irse, dormir / dormirse, acordar / acordarse</em>). Se analiza <strong>dentro del Núcleo Verbal</strong>.<br>
+                            • <em>El testigo <strong>se arrepintió</strong> de su declaración.</em>
+                        </div>
+                        <div class="example-box">
+                            <strong>6. «SE» Marca de Pasiva Refleja (MPR):</strong><br>
+                            Aparece con <strong>verbo transitivo en 3.ª persona (singular o plural) + un SN Sujeto Paciente</strong> (normalmente inanimado) que concuerda con el verbo.<br>
+                            • <em><strong>Se</strong> aprobaron <u>las nuevas becas</u> (Suj. Paciente).</em> (= Fueron aprobadas).
+                        </div>
+                        <div class="example-box">
+                            <strong>7. «SE» Marca de Impersonal Refleja (MIR):</strong><br>
+                            Aparece exclusivamente en <strong>3.ª persona del singular</strong> y la oración <strong>CARECE DE SUJETO</strong> (verbo intransitivo, copulativo o transitivo con CD de persona con «a»).<br>
+                            • <em>En este hospital <strong>se</strong> cuida <u>a los enfermos</u> (CD).</em> / <em><strong>Se</strong> está muy bien aquí.</em>
+                        </div>
+                        <div class="alert-pau">
+                            <h4>💡 Bonus: La Voz Media (Construcción Media)</h4>
+                            <p style="font-size:0.85rem;">¿Qué pasa en <em>«El barco se hundió»</em> o <em>«El bosque se quemó»</em>? No es reflexivo (el barco no se hunde a sí mismo a propósito) ni pasiva refleja (no fue hundido por alguien, sucedió fortuitamente). Es un <strong>SE de Voz Media (proceso fortuito en el sujeto)</strong>, que se analiza como morfema pronominal unido al verbo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ENTRENADOR MÓDULO 4 (10 EJERCICIOS) -->
+                <div class="practice-arena" id="arena-t4"></div>
+
+                <div style="text-align:right; margin-top:1rem;">
+                    <button class="btn btn-success" onclick="markTheoryRead('t4', 'view-t5', 'nav-t5')">✓ Módulo 4 Dominado (+50 XP) → Pasar al Módulo 5</button>
+                </div>
+            </section>
+
+            <!-- VIEW T5: CLASIFICACIÓN Y GLOSARIO NGLE -->
+            <section id="view-t5" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Módulo Teórico 5 · Referencia Rápida</span>
+                    <h2 class="section-title">5. Clasificación de la Oración Simple y Glosario NGLE</h2>
+                    <p class="section-subtitle">Cómo redactar la clasificación final de una oración en un examen de Bachillerato según los cuatro ejes canónicos.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">📋 Los 4 Ejes de Clasificación Oracional</div>
+                        <ul style="padding-left:1.2rem; font-size:0.92rem; display:flex; flex-direction:column; gap:0.6rem;">
+                            <li><strong>1. Según la relación Sujeto-Predicado:</strong> <em>Personal</em> (con sujeto expreso o tácito) vs. <em>Impersonal</em> (meteorológica, gramaticalizada, refleja o eventual).</li>
+                            <li><strong>2. Según la estructura del Predicado:</strong> <em>Copulativa / Atributiva</em> (con atributo) vs. <em>Predicativa</em> (sin atributo).</li>
+                            <li><strong>3. Según la Diátesis (Voz) y Transitividad:</strong>
+                                <br>• <em>Activa Transitiva</em> (con CD) o <em>Activa Intransitiva</em> (sin CD: inergativa o inacusativa).
+                                <br>• <em>Pasiva Perifrástica</em> (<em>ser + participio</em>) o <em>Pasiva Refleja</em> (<em>se + verbo activo</em>).
+                            </li>
+                            <li><strong>4. Según la Modalidad (Actitud del Hablante):</strong> Enunciativa (declarativa), Interrogativa (total/parcial, directa/indirecta), Exclamativa, Imperativa (exhortativa), Desiderativa (optativa) o Dubitativa.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">📖 Buscador del Glosario NGLE</div>
+                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.75rem;">Filtra por categoría para repasar los conceptos clave de la Nueva Gramática:</p>
+                        <div class="tabs-bar">
+                            <button class="tab-pill active" onclick="filterGlossary('all', this)">Todos</button>
+                            <button class="tab-pill" onclick="filterGlossary('func', this)">Funciones</button>
+                            <button class="tab-pill" onclick="filterGlossary('verb', this)">Verbos y SE</button>
+                            <button class="tab-pill" onclick="filterGlossary('ngle', this)">Conceptos NGLE</button>
+                        </div>
+                        <div id="glossary-list" style="max-height: 290px; overflow-y: auto; display:flex; flex-direction:column; gap:0.6rem;"></div>
+                    </div>
+                </div>
+
+                <!-- ENTRENADOR MÓDULO 5 (10 EJERCICIOS) -->
+                <div class="practice-arena" id="arena-t5"></div>
+
+                <div style="text-align:right; margin-top:1rem;">
+                    <button class="btn btn-success" onclick="markTheoryRead('t5', 'view-g1', 'nav-g1')">✓ ¡Teoría Completada! (+50 XP) → Ir al Laboratorio Sintáctico</button>
+                </div>
+            </section>
+
+            <!-- VIEW G1: LABORATORIO SINTÁCTICO (20 ORACIONES CLIC SIN ESCRIBIR) -->
+            <section id="view-g1" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Reto Interactivo 1 · 20 Oraciones Completas</span>
+                    <h2 class="section-title">🔬 Laboratorio de Disección Sintáctica</h2>
+                    <p class="section-subtitle"><strong>Instrucciones (Sin teclado):</strong> 1.º Haz clic en un sintagma de la oración para seleccionarlo. 2.º Haz clic en su función sintáctica correspondiente en la botonera inferior. Cuando hayas etiquetado todos los bloques, pulsa <strong>«Verificar Análisis»</strong>.</p>
+                </div>
+
+                <div class="sentence-stage">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+                        <span class="badge-Synt" id="lab-counter">Oración 1 de 20</span>
+                        <span class="badge-Synt badge-warn" id="lab-difficulty">Nivel: Bachillerato</span>
+                    </div>
+
+                    <div class="chunk-container" id="lab-chunks"></div>
+
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">👇 Selecciona un bloque arriba y asígnale su función haciendo clic aquí:</p>
+                    <div class="function-palette" id="lab-palette"></div>
+
+                    <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
+                        <button class="btn" id="btn-lab-check" onclick="checkLabSentence()">✔️ Verificar Análisis</button>
+                        <button class="btn btn-secondary" onclick="clearLabSelection()">🔄 Limpiar Etiquetas</button>
+                        <button class="btn btn-success" id="btn-lab-next" style="display:none;" onclick="nextLabSentence()">Siguiente Oración →</button>
+                    </div>
+
+                    <div class="feedback-panel" id="lab-feedback"></div>
+                </div>
+            </section>
+
+            <!-- VIEW G2: EL JUEZ DEL SE (25 EXPEDIENTES) -->
+            <section id="view-g2" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Reto Interactivo 2 · 25 Expedientes</span>
+                    <h2 class="section-title">⚖️ El Tribunal de los 7 Valores de «SE»</h2>
+                    <p class="section-subtitle">Lee la oración del expediente judicial y dictamina con un solo clic qué valor exacto desempeña el morfema o pronombre <strong>«SE»</strong>.</p>
+                </div>
+
+                <div class="card" style="max-width:900px; margin:0 auto;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <span class="badge-Synt" id="se-counter">Caso 1 / 25</span>
+                        <span class="badge-Synt badge-ok" id="se-streak">🔥 Racha: 0</span>
+                    </div>
+
+                    <div class="example-box" style="font-size:1.3rem; text-align:center; padding:1.6rem;" id="se-sentence"></div>
+
+                    <div class="options-grid" id="se-options"></div>
+
+                    <div class="feedback-panel" id="se-feedback"></div>
+
+                    <div style="text-align:right; margin-top:1.25rem;">
+                        <button class="btn btn-success" id="btn-se-next" style="display:none;" onclick="nextSeCase()">Siguiente Expediente →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW G3: CAZADOR DE IMPERSONALES Y PASIVAS (20 MUESTRAS) -->
+            <section id="view-g3" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Reto Interactivo 3 · 20 Muestras</span>
+                    <h2 class="section-title">🕵️ Radar de Impersonales y Pasivas Reflejas</h2>
+                    <p class="section-subtitle">Clasifica cada construcción en su categoría exacta: ¿Tiene sujeto paciente? ¿Es impersonal refleja? ¿Es impersonal gramaticalizada o eventual?</p>
+                </div>
+
+                <div class="card" style="max-width:900px; margin:0 auto;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <span class="badge-Synt" id="imp-counter">Muestra 1 / 20</span>
+                        <span class="badge-Synt" id="imp-score">Aciertos: 0</span>
+                    </div>
+
+                    <div class="example-box" style="font-size:1.25rem; text-align:center; padding:1.5rem;" id="imp-sentence"></div>
+
+                    <div class="options-grid" id="imp-options"></div>
+
+                    <div class="feedback-panel" id="imp-feedback"></div>
+
+                    <div style="text-align:right; margin-top:1.25rem;">
+                        <button class="btn btn-success" id="btn-imp-next" style="display:none;" onclick="nextImpCase()">Siguiente Muestra →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW G4: TRIVIAL SINTÁCTICO (30 PREGUNTAS) -->
+            <section id="view-g4" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Reto Interactivo 4 · 30 Preguntas de Examen</span>
+                    <h2 class="section-title">⚡ Trivial Sintáctico de Alto Nivel (30 Preguntas)</h2>
+                    <p class="section-subtitle">Preguntas de examen real sobre pares mínimos, ambigüedades sintácticas, NGLE y funciones complejas. Dispones de tres comodines de cada tipo por partida.</p>
+                </div>
+
+                <div class="card" style="max-width:920px; margin:0 auto;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.2rem;">
+                        <span class="badge-Synt" id="triv-counter">Pregunta 1 / 30</span>
+                        <div style="display:flex; gap:0.6rem;">
+                            <button class="btn btn-secondary" id="btn-5050" onclick="use5050()" style="padding:0.4rem 0.85rem; font-size:0.8rem;">✂️ Comodín 50/50 (3)</button>
+                            <button class="btn btn-secondary" id="btn-hint" onclick="useHint()" style="padding:0.4rem 0.85rem; font-size:0.8rem;">💡 Pista Gramatical (3)</button>
+                        </div>
+                    </div>
+
+                    <h3 id="triv-question" style="font-size:1.2rem; margin-bottom:1rem;"></h3>
+
+                    <div id="triv-hint-box" class="alert-pau" style="display:none; margin-bottom:1rem;"></div>
+
+                    <div class="options-grid" id="triv-options"></div>
+
+                    <div class="feedback-panel" id="triv-feedback"></div>
+
+                    <div style="text-align:right; margin-top:1.25rem;">
+                        <button class="btn btn-success" id="btn-triv-next" style="display:none;" onclick="nextTrivQuestion()">Siguiente Pregunta →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW G5: EL GRAN ROSCO PASAPALABRA (25 LETRAS SIN TECLADO) -->
+            <section id="view-g5" class="view-section">
+                <div class="section-header">
+                    <span class="section-tag">Reto Final · 25 Definiciones A-Z</span>
+                    <h2 class="section-title">🎡 El Gran Rosco de la Sintaxis (Modo Selección Táctil)</h2>
+                    <p class="section-subtitle">Completa las 25 letras del Rosco Sintáctico <strong>sin necesidad de escribir</strong>: lee la definición y haz clic en el término correcto entre las 4 opciones, o pulsa <strong>«Pasapalabra»</strong> para dejar la letra para la siguiente vuelta.</p>
+                </div>
+
+                <div class="rosco-layout">
+                    <div class="rosco-wheel" id="rosco-wheel">
+                        <div class="rosco-center">
+                            <div class="big-char" id="rosco-big-letter">A</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;" id="rosco-stats-mini">0 ✅ | 0 ❌</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.85rem;">
+                            <span class="badge-Synt" id="rosco-condition">Empieza por la A</span>
+                            <button class="btn btn-secondary" onclick="pasapalabraRosco()" id="btn-pasapalabra" style="padding:0.45rem 1rem; font-size:0.85rem;">⏭️ Pasapalabra</button>
+                        </div>
+
+                        <p id="rosco-def" style="font-size:1.1rem; font-weight:600; margin-bottom:1.25rem; min-height:60px;"></p>
+
+                        <div class="options-grid" id="rosco-options"></div>
+
+                        <div class="feedback-panel" id="rosco-feedback"></div>
+
+                        <div style="margin-top:1.25rem; display:flex; justify-content:space-between; align-items:center;">
+                            <button class="btn btn-secondary" onclick="initRosco()" style="font-size:0.82rem; padding:0.45rem 0.9rem;">🔄 Reiniciar Rosco</button>
+                            <span style="font-size:0.85rem; color:var(--text-muted);" id="rosco-remaining">Pendientes: 25</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           ESTADO GLOBAL, SONIDO WEB AUDIO API Y PERSISTENCIA
+           ========================================================================== */
+        const state = {
+            xp: 0,
+            seconds: 0,
+            sound: true,
+            theoryDone: { t1: false, t2: false, t3: false, t4: false, t5: false },
+            arenaDone: { t0: 0, t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 },
+            labDone: 0,
+            seDone: 0,
+            impDone: 0,
+            trivDone: 0,
+            roscoDone: 0
+        };
+
+        function loadState() {
+            try {
+                const saved = localStorage.getItem('sintaxis_pro_1bach_v2');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    Object.assign(state, parsed);
+                    if (!state.arenaDone) state.arenaDone = { t0: 0, t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 };
+                }
+            } catch (e) {}
+            updateHUD();
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem('sintaxis_pro_1bach_v2', JSON.stringify(state));
+            } catch (e) {}
+            updateHUD();
+        }
+
+        function resetAllProgress() {
+            if (!confirm('¿Quieres poner a cero tus puntos XP y reiniciar todos los retos?')) return;
+            localStorage.removeItem('sintaxis_pro_1bach_v2');
+            location.reload();
+        }
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(type) {
+            if (!state.sound) return;
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === 'ok') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.12);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'err') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(800, now);
+                    gain.gain.setValueAtTime(0.04, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                }
+            } catch (e) {}
+        }
+
+        setInterval(() => {
+            state.seconds++;
+            const mins = String(Math.floor(state.seconds / 60)).padStart(2, '0');
+            const secs = String(state.seconds % 60).padStart(2, '0');
+            document.getElementById('hud-timer').textContent = `${mins}:${secs}`;
+        }, 1000);
+
+        function addXP(amount) {
+            state.xp += amount;
+            saveState();
+        }
+
+        function updateHUD() {
+            document.getElementById('hud-xp').textContent = state.xp;
+            let rank = 'Aprendiz';
+            if (state.xp >= 2500) rank = 'Catedrático RAE';
+            else if (state.xp >= 1600) rank = 'Gramático Ilustre';
+            else if (state.xp >= 900) rank = 'Analista Sénior';
+            else if (state.xp >= 350) rank = 'Sintactista';
+            document.getElementById('hud-rank').textContent = rank;
+
+            const arenaSum = Object.values(state.arenaDone).reduce((a, b) => a + b, 0);
+            const totalItems = 56 + 20 + 25 + 20 + 30 + 25; // 176 ejercicios
+            const doneItems = arenaSum + state.labDone + state.seDone + state.impDone + state.trivDone + state.roscoDone;
+            const pct = Math.min(100, Math.round((doneItems / totalItems) * 100));
+
+            document.getElementById('hud-progress').style.width = pct + '%';
+            document.getElementById('hud-pct').textContent = pct + '%';
+
+            // Actualizar badges de páginas teóricas
+            const maxArena = { t0: 6, t1: 10, t2: 10, t3: 10, t4: 10, t5: 10 };
+            Object.keys(maxArena).forEach(k => {
+                const badge = document.getElementById('badge-' + k);
+                const btn = document.getElementById('nav-' + k);
+                if (badge) badge.textContent = `${state.arenaDone[k]}/${maxArena[k]}`;
+                if (btn && state.arenaDone[k] >= maxArena[k]) btn.classList.add('completed');
+            });
+
+            document.getElementById('badge-g1').textContent = `${state.labDone}/20`;
+            document.getElementById('badge-g2').textContent = `${state.seDone}/25`;
+            document.getElementById('badge-g3').textContent = `${state.impDone}/20`;
+            document.getElementById('badge-g4').textContent = `${state.trivDone}/30`;
+            document.getElementById('badge-g5').textContent = `${state.roscoDone}/25`;
+        }
+
+        function switchView(viewId, btnEl) {
+            playTone('click');
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function markTheoryRead(key, nextViewId, nextNavId) {
+            if (!state.theoryDone[key]) {
+                state.theoryDone[key] = true;
+                addXP(50);
+                playTone('ok');
+            }
+            switchView(nextViewId, document.getElementById(nextNavId));
+        }
+
+        document.getElementById('btn-theme').addEventListener('click', () => {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            playTone('click');
+        });
+
+        document.getElementById('btn-sound').addEventListener('click', (e) => {
+            state.sound = !state.sound;
+            e.target.textContent = state.sound ? '🔊' : '🔇';
+            saveState();
+        });
+
+        /* ==========================================================================
+           ENTRENADORES INTEGRADOS EN CADA PÁGINA TEÓRICA (56 EJERCICIOS NUEVOS)
+           ========================================================================== */
+        const pageArenas = {
+            t0: {
+                title: '🎯 Test Diagnóstico Inicial (Calentamiento de 6 Ejercicios)',
+                subtitle: 'Comprueba tu intuición sintáctica antes de adentrarte en los bloques teóricos:',
+                items: [
+                    { q: '1. En «A los vecinos les molestan los ruidos nocturnos», ¿cuál es el Sujeto?', opts: ['A los vecinos', 'les', 'los ruidos nocturnos', 'Es impersonal'], ans: 2, exp: '«Los ruidos nocturnos» concuerda en plural con «molestan» (Si fuera singular: «molesta el ruido»). Ningún sujeto empieza por «a».' },
+                    { q: '2. En «Había trescientas personas en el auditorio», ¿qué función cumple «trescientas personas»?', opts: ['Sujeto', 'Complemento Directo (CD)', 'Atributo', 'CC de Cantidad'], ans: 1, exp: 'El verbo «haber» existencial es impersonal (3.ª pers. singular). Lo que «hay» funciona siempre como CD («Las había»).' },
+                    { q: '3. En «La gimnasta terminó el ejercicio agotada», ¿qué función tiene «agotada»?', opts: ['CC de Modo', 'Atributo', 'Complemento Predicativo del Sujeto', 'Complemento del Nombre'], ans: 2, exp: 'Es un SAdj que modifica a un verbo pleno («terminó») y concuerda en femenino singular con el sujeto («La gimnasta»).' },
+                    { q: '4. En «Nuestros amigos se quejan siempre del frío», el morfema «se» es:', opts: ['Complemento Directo reflexivo', 'Complemento Indirecto', 'Morfema verbal pronominal (parte del núcleo)', 'Marca de pasiva refleja'], ans: 2, exp: 'El verbo «quejarse» no existe sin «se» (*quejar). Forma parte obligatoria del núcleo verbal.' },
+                    { q: '5. En «Desgraciadamente, el tren llegó con retraso», «Desgraciadamente» es:', opts: ['CC de Modo', 'Modificador Oracional (Adjunto Periférico)', 'Sujeto', 'Atributo'], ans: 1, exp: 'Va entre pausas y valora toda la oración desde la perspectiva del hablante, no el modo en que camina el tren.' },
+                    { q: '6. ¿Cuál de estas oraciones es PASIVA REFLEJA?', opts: ['Se busca a los culpables.', 'Se firmaron los tratados de paz.', 'Se vive bien en Sevilla.', 'Pedro se lava las manos.'], ans: 1, exp: '«Los tratados de paz» es el Sujeto Paciente que concuerda en plural con «se firmaron» (= fueron firmados).' }
+                ]
+            },
+            t1: {
+                title: '🏋️ Entrenador del Módulo 1: Caza del Sujeto e Impersonalidad (10 Ejercicios)',
+                subtitle: 'Identifica el Sujeto exacto o el tipo de Impersonalidad haciendo clic en la opción correcta:',
+                items: [
+                    { q: '1. «A mi profesora de Literatura le apasionan las tragedias griegas.» → ¿Cuál es el Sujeto?', opts: ['A mi profesora de Literatura', 'las tragedias griegas', 'le', 'Sujeto omitido (Ella)'], ans: 1, exp: 'Al cambiar el verbo a singular («le apasiona»), cambia obligatoriamente «la tragedia griega» → Sujeto.' },
+                    { q: '2. «Hasta los expertos más veteranos cometieron algún error.» → ¿Cuál es el Sujeto?', opts: ['los expertos más veteranos (sin «hasta»)', 'Hasta los expertos más veteranos (todo junto)', 'Sujeto omitido (Ellos)', 'algún error'], ans: 1, exp: '«Hasta» funciona aquí como adverbio inclusivo (= incluso), por lo que se integra dentro del SN Sujeto.' },
+                    { q: '3. «Entre mi hermano y yo pintamos la habitación el sábado.» → Según la NGLE, el sujeto es:', opts: ['Entre mi hermano y yo', 'Sujeto tácito/omitido (Nosotros) y «Entre mi hermano y yo» es CC de Cooperación', 'la habitación', 'Es impersonal'], ans: 1, exp: '«Entre» es preposición; el sujeto gramatical de «pintamos» es «Nosotros» (tácito).' },
+                    { q: '4. «En invierno anochece muy temprano en el norte de Europa.» → ¿Qué tipo de oración es?', opts: ['Personal con sujeto «el norte»', 'Impersonal meteorológica (unipersonal)', 'Impersonal eventual', 'Pasiva refleja'], ans: 1, exp: '«Anochecer» es un verbo de fenómeno natural inmovilizado en 3.ª persona del singular.' },
+                    { q: '5. «Nos amaneció en mitad de la carretera comarcal.» → ¿Y si decimos «Amanecimos en Granada»?', opts: ['Ambas son impersonales.', 'La primera es impersonal; en «Amanecimos en Granada» hay Sujeto tácito (Nosotros).', 'Ambas tienen sujeto.', '«Granada» es el sujeto.'], ans: 1, exp: 'En primera persona del plural («Amanecimos»), el verbo se personaliza y tiene sujeto «Nosotros».' },
+                    { q: '6. «Durante el concierto hubo varios fallos de sonido.» → ¿Cuál es el Sujeto?', opts: ['varios fallos de sonido', 'el concierto', 'Carece de sujeto (Impersonal gramaticalizada con «haber»)', 'Sujeto omitido (Ellos)'], ans: 2, exp: '«Hubo» es la forma impersonal de «haber»; «varios fallos de sonido» es el Complemento Directo.' },
+                    { q: '7. «Hoy hace un calor sofocante en todo el valle del Guadalquivir.» → ¿Cuál es el Sujeto?', opts: ['un calor sofocante', 'el valle del Guadalquivir', 'Carece de sujeto (Impersonal con «hacer»)', 'Hoy'], ans: 2, exp: '«Hacer» aplicado al clima o al tiempo transcurrido es impersonal; «un calor sofocante» es CD (Lo hace).' },
+                    { q: '8. «En esa ventanilla se atiende únicamente a los jubilados.» → ¿Por qué es Impersonal Refleja?', opts: ['Porque «jubilados» es masculino plural.', 'Porque el verbo va en 3.ª singular y «a los jubilados» es CD con preposición «a».', 'Porque el verbo es copulativo.', 'No es impersonal, es pasiva refleja.'], ans: 1, exp: 'Al llevar preposición «a», «a los jubilados» no puede ser sujeto paciente, sino CD (Se los atiende).' },
+                    { q: '9. «Dicen por ahí que van a peatonalizar toda la avenida.» → El verbo «Dicen» forma una:', opts: ['Impersonal refleja', 'Impersonal eventual (con 3.ª persona del plural sin referente concreto)', 'Pasiva refleja', 'Impersonal gramaticalizada'], ans: 1, exp: 'La 3.ª persona del plural sin antecedente conocido expresa un sujeto indeterminado (Impersonal eventual).' },
+                    { q: '10. «Me sobran motivos para rechazar esa oferta.» → ¿Cuál es el Sujeto de «sobran»?', opts: ['Yo (Me)', 'motivos', 'esa oferta', 'Es impersonal'], ans: 1, exp: 'Aquí «sobrar» concuerda en plural con «motivos» (Me sobra un motivo / Me sobran motivos) → Sujeto.' }
+                ]
+            },
+            t2: {
+                title: '🏋️ Entrenador del Módulo 2: CD, CI, C. Régimen y Modificadores (10 Ejercicios)',
+                subtitle: 'Aplica las pruebas de pronominalización y permanencia de preposición para acertar:',
+                items: [
+                    { q: '1. «La policía interrogó a los sospechosos durante dos horas.» → ¿Qué función cumple «a los sospechosos»?', opts: ['Complemento Indirecto (CI)', 'Complemento Directo (CD)', 'Sujeto', 'Complemento de Régimen'], ans: 1, exp: 'Si pasamos a femenino: «La policía interrogó a las sospechosas → Las interrogó / Fueron interrogadas» → CD.' },
+                    { q: '2. «El paquete pesa cuatro kilos y medio.» → ¿Qué función tiene «cuatro kilos y medio»?', opts: ['Sujeto', 'CD de medida argumental', 'Atributo', 'C. Régimen'], ans: 1, exp: 'Con verbos de medida, peso o precio, la cantidad se pronominaliza por «los» («Los pesa») → CD de medida.' },
+                    { q: '3. «El ponente habló extensamente de las energías renovables.» → «de las energías renovables» es:', opts: ['CC de Materia', 'Complemento Directo', 'Complemento de Régimen (CRég)', 'Complemento del Nombre'], ans: 2, exp: 'Preposición exigida por «hablar de algo» (habló de eso) → C. Régimen.' },
+                    { q: '4. «El camarero limpió la mesa con una bayeta húmeda.» → «con una bayeta húmeda» es:', opts: ['CC de Compañía', 'CC de Instrumento', 'Complemento de Régimen', 'CC de Modo'], ans: 1, exp: 'Designa el utensilio físico con el que el agente realiza la acción → CC de Instrumento.' },
+                    { q: '5. «Afortunadamente, nadie sufrió heridas en el accidente.» → «Afortunadamente» es:', opts: ['CC de Modo', 'Modificador Oracional (Adjunto Periférico)', 'Atributo', 'Predicativo'], ans: 1, exp: 'Valora el suceso completo desde fuera del predicado y va entre pausas → Modificador Oracional.' },
+                    { q: '6. «Los anfitriones llenaron las copas de champán francés.» → Funciones de «las copas» y «de champán francés»:', opts: ['CD («las copas») + CN («de champán»)', 'CD («las copas») + C. Régimen («de champán francés»)', 'CI + CD', 'Sujeto + C. Régimen'], ans: 1, exp: 'Si pronominalizamos el CD («Las llenaron de champán»), el SPrep permanece fuera porque lo rige el verbo «llenar de».' },
+                    { q: '7. «No me leas el periódico con tan poca luz, que te dañarás la vista.» → El pronombre «me» es:', opts: ['CD', 'Dativo ético (CI superfluo de interés)', 'Sujeto', 'Morfema pronominal'], ans: 1, exp: 'Se puede eliminar («No leas el periódico...») sin alterar la estructura argumental → Dativo ético.' },
+                    { q: '8. «El incendio fue sofocado por los bomberos forestales.» → «por los bomberos forestales» es:', opts: ['CC de Causa', 'Complemento Agente', 'Complemento de Régimen', 'Sujeto'], ans: 1, exp: 'En una oración pasiva perifrástica, el SPrep con «por» que realiza la acción es el C. Agente.' },
+                    { q: '9. «La reunión de delegados se aplazó por la huelga de transporte.» → «por la huelga de transporte» es:', opts: ['Complemento Agente', 'CC de Causa', 'C. Régimen', 'CD'], ans: 1, exp: 'La huelga no «aplaza» voluntariamente la reunión como agente, sino que es el motivo → CC de Causa.' },
+                    { q: '10. «Entregaron las llaves nuevas a los inquilinos.» → Al pronominalizar CD y CI a la vez obtenemos:', opts: ['Le las entregaron', 'Se las entregaron (Se = CI, las = CD)', 'Los entregaron', 'La entregaron'], ans: 1, exp: '«A los inquilinos» (les) evoluciona a «se» (CI) ante el pronombre de CD «las» («las llaves»).' }
+                ]
+            },
+            t3: {
+                title: '🏋️ Entrenador del Módulo 3: Atributo, Predicativo y CCM (10 Ejercicios)',
+                subtitle: 'Distingue con precisión quirúrgica entre Atributo, PVO del Sujeto, PVO del CD y CC de Modo:',
+                items: [
+                    { q: '1. «Las aguas del río bajaban muy turbias tras la tormenta.» → «muy turbias» es:', opts: ['Atributo', 'CC de Modo', 'Complemento Predicativo del Sujeto', 'Complemento Directo'], ans: 2, exp: '«Bajar» es un verbo predicativo pleno y «muy turbias» es un SAdj que concuerda con «Las aguas» → PVO del Sujeto.' },
+                    { q: '2. «Las aguas del río bajaban rápidamente hacia el mar.» → «rápidamente» es:', opts: ['Complemento Predicativo', 'CC de Modo', 'Atributo', 'Modificador Oracional'], ans: 1, exp: 'Es un Sintagma Adverbial invariable en género y número → CC de Modo.' },
+                    { q: '3. «Aquella propuesta parecía bastante razonable al principio.» → «bastante razonable» es:', opts: ['C. Predicativo', 'Atributo', 'CC de Modo', 'CD'], ans: 1, exp: '«Parecer» es verbo copulativo y su complemento se conmuta por el neutro «lo» («Lo parecía») → Atributo.' },
+                    { q: '4. «El director encontró dormido al vigilante de seguridad.» → «dormido» es:', opts: ['Complemento del Nombre', 'C. Predicativo del CD («Lo encontró dormido»)', 'C. Predicativo del Sujeto', 'Atributo'], ans: 1, exp: 'Se refiere a «al vigilante» (CD), no al director, y queda fuera al pronominalizar: «Lo encontró dormido».' },
+                    { q: '5. «Con el paso de los años, aquel carácter suyo se volvió insoportable.» → «insoportable» es:', opts: ['CC de Modo', 'Atributo (con verbo semicopulativo «volverse»)', 'CD', 'Sujeto'], ans: 1, exp: '«Volverse» es un verbo semicopulativo de cambio de estado (NGLE) y selecciona un Atributo.' },
+                    { q: '6. «Mi hermana mayor trabaja de traductora en Bruselas.» → «de traductora» funciona como:', opts: ['C. del Nombre', 'C. Predicativo del Sujeto (preposicional)', 'C. Régimen', 'CD'], ans: 1, exp: 'Con «trabajar de + profesión sin determinante», el SPrep predica la ocupación del sujeto → PVO del Sujeto.' },
+                    { q: '7. «Hoy me han servido el café completamente frío.» → «completamente frío» es:', opts: ['Complemento del Nombre dentro del CD', 'C. Predicativo del CD («Me lo han servido completamente frío»)', 'CC de Modo', 'Atributo'], ans: 1, exp: 'Si pronominalizamos el CD («el café» → «lo»), el SAdj se mantiene fuera: «Me lo han servido frío» → PVO del CD.' },
+                    { q: '8. «Hoy he tomado un café frío en la terraza.» → «frío» en «un café frío» es:', opts: ['C. Predicativo del CD', 'Modificador / CN adjetival dentro del SN CD («Lo he tomado»)', 'Atributo', 'CC de Modo'], ans: 1, exp: 'Al llevar determinante indefinido y designar un tipo de bebida, se pronominaliza todo junto («Lo he tomado») → CN dentro del CD.' },
+                    { q: '9. «La película resultó un absoluto éxito de taquilla.» → «un absoluto éxito de taquilla» es:', opts: ['Complemento Directo', 'Atributo (con verbo semicopulativo «resultar»)', 'Sujeto', 'CC de Modo'], ans: 1, exp: '«Resultar» equivale aquí a «ser» (verbo semicopulativo) → SN Atributo.' },
+                    { q: '10. «Los niños dormían tranquilos en su habitación.» → «tranquilos» es:', opts: ['CC de Modo', 'C. Predicativo del Sujeto', 'Atributo', 'CD'], ans: 1, exp: 'Adjetivo que concuerda en masculino plural con «Los niños» y modifica al verbo pleno «dormían» → PVO del Sujeto.' }
+                ]
+            },
+            t4: {
+                title: '🏋️ Entrenador del Módulo 4: Triaje Rápido del «SE» (10 Ejercicios)',
+                subtitle: 'Decide en cada oración si «SE» tiene función de complemento (CD/CI) o es un morfema/marca:',
+                items: [
+                    { q: '1. «Elena se maquilla frente al espejo del camerino.»', opts: ['SE Reflexivo con función de CD', 'SE Reflexivo con función de CI', 'Morfema pronominal', 'Pasiva refleja'], ans: 0, exp: 'Admite «a sí misma» y no hay otro CD en la oración → SE Reflexivo (CD).' },
+                    { q: '2. «Elena se maquilla los párpados con sombra dorada.»', opts: ['SE Reflexivo con función de CD', 'SE Reflexivo con función de CI (porque «los párpados» es el CD)', 'Dativo ético', 'Impersonal refleja'], ans: 1, exp: 'Al aparecer el CD expreso («los párpados»), el pronombre reflexivo «se» pasa a desempeñar la función de CI.' },
+                    { q: '3. «Los dos socios se enviaron correos electrónicos durante toda la semana.»', opts: ['SE Recíproco con función de CD', 'SE Recíproco con función de CI («correos electrónicos» es el CD)', 'Variante de LE', 'Pasiva refleja'], ans: 1, exp: 'Acción mutua («el uno al otro») donde «correos electrónicos» es el CD y «se» es el CI.' },
+                    { q: '4. «Pidió disculpas al árbitro → Se las pidió.»', opts: ['SE Reflexivo (CI)', 'SE Variante de LE (CI) ante el clítico «las»', 'Dativo aspectual', 'Morfema pronominal'], ans: 1, exp: 'Sustituye a «al árbitro» (le) y adopta la forma «se» por ir delante de «las» → CI.' },
+                    { q: '5. «Mi vecino se jacta continuamente de sus contactos.»', opts: ['SE Reflexivo (CD)', 'SE Morfema verbal pronominal (parte del verbo «jactarse»)', 'SE Dativo ético', 'SE Impersonal'], ans: 1, exp: 'El verbo «jactarse» no existe sin pronombre (*jactar). Se analiza dentro del núcleo verbal.' },
+                    { q: '6. «Se comió dos platos de paella sin respirar.»', opts: ['SE Reflexivo (CD)', 'SE Dativo aspectual/enfático (suprimible: «Comió dos platos...»)', 'SE Impersonal', 'SE Pasiva refleja'], ans: 1, exp: 'Se puede eliminar sin que cambie el significado ni la gramaticalidad → Dativo aspectual.' },
+                    { q: '7. «Se publicaron las listas definitivas de admitidos.»', opts: ['SE Marca de Pasiva Refleja (con Sujeto Paciente «las listas»)', 'SE Marca de Impersonal Refleja', 'SE Reflexivo', 'SE Pronominal'], ans: 0, exp: '«Las listas definitivas» concuerda en plural con «publicaron» (= fueron publicadas) → Pasiva Refleja.' },
+                    { q: '8. «Desde aquí se ve perfectamente a los actores.»', opts: ['SE Marca de Pasiva Refleja', 'SE Marca de Impersonal Refleja («a los actores» es CD)', 'SE Reflexivo', 'SE Variante de LE'], ans: 1, exp: 'Verbo en 3.ª singular sin sujeto y con CD animado introducido por «a» → Impersonal Refleja.' },
+                    { q: '9. «El puente antiguo se derrumbó durante el terremoto.»', opts: ['SE Reflexivo', 'SE de Voz Media / Morfema inacusativo (proceso fortuito en el sujeto)', 'SE Impersonal', 'SE Recíproco'], ans: 1, exp: 'El puente no se derrumba a sí mismo voluntariamente ni es pasiva con agente; sufre un proceso fortuito (Voz Media).' },
+                    { q: '10. «Los alumnos se fueron del aula al sonar el timbre.»', opts: ['SE Reflexivo (CD)', 'SE Morfema pronominal (intransitivizador/aspectual de «irse»)', 'SE Pasiva refleja', 'SE Variante de LE'], ans: 1, exp: 'Con verbos de movimiento como «irse, marcharse, caerse», el morfema forma parte del núcleo verbal.' }
+                ]
+            },
+            t5: {
+                title: '🏋️ Entrenador del Módulo 5: Clasificación Oracional y NGLE (10 Ejercicios)',
+                subtitle: 'Selecciona la clasificación completa o el concepto de la NGLE que corresponde a cada oración:',
+                items: [
+                    { q: '1. Clasifica: «Los paquetes fueron entregados puntualmente por el mensajero.»', opts: ['Personal, predicativa, pasiva perifrástica, enunciativa afirmativa.', 'Personal, copulativa, activa transitiva, enunciativa.', 'Pasiva refleja, intransitiva, enunciativa.', 'Impersonal, pasiva perifrástica, exhortativa.'], ans: 0, exp: 'Tiene sujeto paciente («Los paquetes»), verbo en voz pasiva perifrástica («fueron entregados») y C. Agente.' },
+                    { q: '2. Clasifica: «Quizás haya nuevas convocatorias de becas en otoño.»', opts: ['Personal, predicativa, transitiva y enunciativa.', 'Impersonal (gramaticalizada), predicativa, activa, transitiva y dubitativa.', 'Pasiva refleja, intransitiva y desiderativa.', 'Impersonal refleja, copulativa y dubitativa.'], ans: 1, exp: '«Haya» es impersonal gramaticalizada con CD («nuevas convocatorias») y «Quizás» marca modalidad dubitativa.' },
+                    { q: '3. Clasifica: «¡Ojalá apruebes todas las asignaturas en junio!»', opts: ['Personal, predicativa, activa, transitiva y desiderativa (optativa).', 'Impersonal, predicativa, transitiva y exclamativa.', 'Personal, copulativa y exhortativa.', 'Personal, intransitiva y dubitativa.'], ans: 0, exp: 'Sujeto tácito (Tú), CD («todas las asignaturas») y modalidad desiderativa introducida por «ojalá» + subjuntivo.' },
+                    { q: '4. Clasifica: «Se necesitan traductores de griego moderno en la embajada.»', opts: ['Impersonal refleja, activa, transitiva y enunciativa.', 'Personal, predicativa, pasiva refleja y enunciativa afirmativa.', 'Personal, copulativa y enunciativa.', 'Impersonal eventual, intransitiva y enunciativa.'], ans: 1, exp: '«Traductores» concuerda en plural con «necesitan» → Sujeto Paciente en oración Pasiva Refleja.' },
+                    { q: '5. Clasifica: «No me entregues el trabajo sin bibliografía.»', opts: ['Personal, predicativa, activa, transitiva y exhortativa (o imperativa negativa).', 'Personal, predicativa, intransitiva y enunciativa negativa.', 'Impersonal, transitiva y desiderativa.', 'Pasiva refleja y exhortativa.'], ans: 0, exp: 'Expresa una orden o prohibición dirigida a «Tú» con un CD («el trabajo») → Exhortativa/Imperativa.' },
+                    { q: '6. ¿En cuál de estas oraciones hay una Interrogativa Indirecta Total?', opts: ['¿Vendrás mañana al ensayo?', 'Dime si vendrás mañana al ensayo.', '¡Qué ensayo tan largo!', 'No sé cuándo vendrá al ensayo.'], ans: 1, exp: 'Va subordinada sin signos de interrogación e introducida por la conjunción completiva «si» (respuesta sí/no).' },
+                    { q: '7. Según la NGLE, en «Nacieron tres cachorros» y «Llegaron los invitados», los verbos «nacer» y «llegar» son:', opts: ['Transitivos', 'Intransitivos Inacusativos', 'Intransitivos Inergativos', 'Copulativos'], ans: 1, exp: 'Son inacusativos porque su sujeto experimenta un cambio de estado o lugar sin ser un agente voluntario.' },
+                    { q: '8. Según la NGLE, en «Los atletas corrieron y sonrieron», los verbos «correr» y «sonreír» son:', opts: ['Intransitivos Inergativos (con sujeto agente controlador)', 'Intransitivos Inacusativos', 'Semicopulativos', 'Impersonales'], ans: 0, exp: 'Son inergativos porque el sujeto ejecuta y controla activamente la acción intransitiva.' },
+                    { q: '9. Clasifica: «En este pueblo costero se vive con mucha calma.»', opts: ['Personal, pasiva refleja, intransitiva y enunciativa.', 'Impersonal refleja, predicativa, intransitiva y enunciativa afirmativa.', 'Impersonal eventual, copulativa y enunciativa.', 'Personal, activa e intransitiva.'], ans: 1, exp: '«Vivir» es intransitivo y va con «se» en 3.ª singular sin sujeto posible → Impersonal Refleja.' },
+                    { q: '10. Clasifica: «Tu propuesta me parece una idea brillante.»', opts: ['Personal, copulativa (atributiva) y enunciativa afirmativa.', 'Personal, predicativa, transitiva y enunciativa.', 'Impersonal, copulativa y enunciativa.', 'Pasiva refleja y exclamativa.'], ans: 0, exp: '«Parecer» es verbo copulativo, «Tu propuesta» es el Sujeto y «una idea brillante» es el Atributo («Me lo parece»).' }
+                ]
+            }
+        };
+
+        const arenaPointers = { t0: 0, t1: 0, t2: 0, t3: 0, t4: 0, t5: 0 };
+        const arenaResults = {
+            t0: new Array(6).fill(null),
+            t1: new Array(10).fill(null),
+            t2: new Array(10).fill(null),
+            t3: new Array(10).fill(null),
+            t4: new Array(10).fill(null),
+            t5: new Array(10).fill(null)
+        };
+
+        function initAllPageArenas() {
+            Object.keys(pageArenas).forEach(key => renderPageArena(key));
+        }
+
+        function renderPageArena(key) {
+            const container = document.getElementById('arena-' + key);
+            if (!container) return;
+            const data = pageArenas[key];
+            const idx = arenaPointers[key];
+            const item = data.items[idx];
+            const results = arenaResults[key];
+
+            let dotsHtml = '';
+            data.items.forEach((_, i) => {
+                let cls = 'p-dot';
+                if (i === idx) cls += ' active';
+                if (results[i] === true) cls += ' done-ok';
+                else if (results[i] === false) cls += ' done-err';
+                dotsHtml += `<div class="${cls}" onclick="jumpArena('${key}', ${i})">${i + 1}</div>`;
+            });
+
+            container.innerHTML = `
+                <div class="practice-header">
+                    <div>
+                        <span class="badge-Synt">Práctica Integrada · ${results.filter(Boolean).length}/${data.items.length} superados</span>
+                        <h3 style="font-size:1.15rem; margin-top:0.35rem;">${data.title}</h3>
+                        <p style="font-size:0.86rem; color:var(--text-muted);">${data.subtitle}</p>
+                    </div>
+                    <div class="practice-dots">${dotsHtml}</div>
+                </div>
+                <div class="example-box" style="font-size:1.08rem; font-weight:700; padding:1.15rem;">${item.q}</div>
+                <div class="options-grid" id="arena-opts-${key}"></div>
+                <div class="feedback-panel" id="arena-fb-${key}"></div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.1rem;">
+                    <button class="btn btn-secondary" onclick="prevArenaItem('${key}')" style="padding:0.45rem 0.95rem; font-size:0.82rem;">← Anterior</button>
+                    <button class="btn btn-success" id="arena-next-${key}" onclick="nextArenaItem('${key}')" style="padding:0.5rem 1.1rem; font-size:0.85rem;">Siguiente Ejercicio →</button>
+                </div>
+            `;
+
+            const optsGrid = document.getElementById(`arena-opts-${key}`);
+            item.opts.forEach((optText, optIdx) => {
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                card.textContent = optText;
+                card.onclick = () => answerPageArena(key, optIdx, card);
+                optsGrid.appendChild(card);
+            });
+        }
+
+        function answerPageArena(key, chosenIdx, cardEl) {
+            const data = pageArenas[key];
+            const idx = arenaPointers[key];
+            const item = data.items[idx];
+            const allCards = document.querySelectorAll(`#arena-opts-${key} .option-card`);
+            allCards.forEach(c => c.onclick = null);
+
+            const fb = document.getElementById(`arena-fb-${key}`);
+            if (chosenIdx === item.ans) {
+                playTone('ok');
+                cardEl.classList.add('correct');
+                if (arenaResults[key][idx] !== true) {
+                    arenaResults[key][idx] = true;
+                    state.arenaDone[key] = arenaResults[key].filter(Boolean).length;
+                    addXP(15);
+                }
+                fb.className = 'feedback-panel show ok';
+                fb.innerHTML = `<strong>✅ ¡Correcto! (+15 XP)</strong><br>${item.exp}`;
+            } else {
+                playTone('err');
+                cardEl.classList.add('wrong');
+                allCards[item.ans].classList.add('correct');
+                if (arenaResults[key][idx] === null) arenaResults[key][idx] = false;
+                fb.className = 'feedback-panel show err';
+                fb.innerHTML = `<strong>❌ Incorrecto.</strong> La respuesta correcta es <strong>«${item.opts[item.ans]}»</strong>.<br>${item.exp}`;
+            }
+            // Actualizar bolitas superiores
+            const dots = document.querySelectorAll(`#arena-${key} .p-dot`);
+            if (dots[idx]) {
+                dots[idx].classList.remove('done-ok', 'done-err');
+                dots[idx].classList.add(chosenIdx === item.ans ? 'done-ok' : 'done-err');
+            }
+        }
+
+        function jumpArena(key, targetIdx) {
+            playTone('click');
+            arenaPointers[key] = targetIdx;
+            renderPageArena(key);
+        }
+
+        function nextArenaItem(key) {
+            playTone('click');
+            const total = pageArenas[key].items.length;
+            arenaPointers[key] = (arenaPointers[key] + 1) % total;
+            renderPageArena(key);
+        }
+
+        function prevArenaItem(key) {
+            playTone('click');
+            const total = pageArenas[key].items.length;
+            arenaPointers[key] = (arenaPointers[key] - 1 + total) % total;
+            renderPageArena(key);
+        }
+
+        /* ==========================================================================
+           GLOSARIO NGLE (MÓDULO 5)
+           ========================================================================== */
+        const glossaryData = [
+            { term: 'Argumento', cat: 'ngle', def: 'Complemento exigido semánticamente por el predicado verbal (Sujeto, CD, CRég y la mayoría de los CI). Si se elimina, la oración cambia de estructura o resulta incompleta.' },
+            { term: 'Adjunto', cat: 'ngle', def: 'Complemento no seleccionado ni exigido por el significado del verbo (tradicionalmente llamado Complemento Circunstancial).' },
+            { term: 'Verbo Semicopulativo', cat: 'verb', def: 'Verbo predicativo que, al gramaticalizarse parcialmente (ponerse, volverse, quedarse, resultar, andar), pierde su valor léxico original y selecciona un Atributo.' },
+            { term: 'Verbo Inacusativo', cat: 'verb', def: 'Verbo intransitivo cuyo sujeto no es un agente voluntario, sino que padece o experimenta un cambio de estado o lugar (nacer, morir, caer, llegar, brotar, hundirse).' },
+            { term: 'Verbo Inergativo', cat: 'verb', def: 'Verbo intransitivo puro cuyo sujeto es un agente activo y controlador de la acción (sonreír, trabajar, ladrar, gritar, patinar).' },
+            { term: 'Modificador Oracional', cat: 'func', def: 'También llamado Adjunto Periférico. Elemento externo al predicado, separado por pausas, que valora la oración completa o el acto mismo de decirla (Francamente, por desgracia, en cuanto a...).' },
+            { term: 'Complemento Predicativo (PVO)', cat: 'func', def: 'Predicado secundario (SAdj o SN) que modifica simultáneamente a un verbo pleno y concuerda en género y número con el Sujeto o con el CD.' },
+            { term: 'Dativo Aspectual / Ético', cat: 'verb', def: 'Pronombre átono coreferente o de interés (Se comió todo / No me llores) que puede suprimirse sin que la oración deje de ser gramatical.' },
+            { term: 'Pasiva Refleja', cat: 'verb', def: 'Construcción con SE + verbo transitivo en 3.ª persona (singular o plural) que posee un SN Sujeto Paciente concordado (Se firmaron los acuerdos).' },
+            { term: 'Complemento de Medida Argumental', cat: 'func', def: 'Subtipo de CD propio de verbos como pesar, medir, costar o durar (La maleta pesa veinte kilos → Los pesa).' }
+        ];
+
+        function filterGlossary(cat, btn) {
+            document.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            const container = document.getElementById('glossary-list');
+            container.innerHTML = '';
+            const list = cat === 'all' ? glossaryData : glossaryData.filter(i => i.cat === cat);
+            list.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'example-box';
+                div.style.margin = '0';
+                div.innerHTML = `<strong>${item.term}:</strong> ${item.def}`;
+                container.appendChild(div);
+            });
+        }
+
+        /* ==========================================================================
+           JUEGO 1: LABORATORIO DE DISECCIÓN SINTÁCTICA (AMPLIADO A 20 ORACIONES)
+           ========================================================================== */
+        const labFunctions = [
+            'SUJETO', 'NÚCLEO VERBAL', 'CD', 'CI', 'ATRIBUTO',
+            'C. PREDICATIVO', 'C. RÉGIMEN', 'C. AGENTE', 'CC', 'MOD. ORACIONAL'
+        ];
+
+        const labSentences = [
+            {
+                level: '1. Verbos de afección psíquica',
+                chunks: [
+                    { text: 'A los jurados del certamen', ans: 'CI' },
+                    { text: 'les', ans: 'CI' },
+                    { text: 'sorprendieron', ans: 'NÚCLEO VERBAL' },
+                    { text: 'gratamente', ans: 'CC' },
+                    { text: 'aquellas dos novelas anónimas', ans: 'SUJETO' }
+                ],
+                exp: 'Con verbos tipo «gustar, encantar, sorprender», el SPrep con «a» inicial es siempre CI (duplicado por «les»), y el SN pospuesto que concuerda en plural («aquellas dos novelas») es el Sujeto.'
+            },
+            {
+                level: '2. Predicativo del CD vs. CC',
+                chunks: [
+                    { text: 'El mecánico del taller', ans: 'SUJETO' },
+                    { text: 'nos', ans: 'CI' },
+                    { text: 'devolvió', ans: 'NÚCLEO VERBAL' },
+                    { text: 'ayer', ans: 'CC' },
+                    { text: 'la motocicleta', ans: 'CD' },
+                    { text: 'completamente averiada', ans: 'C. PREDICATIVO' }
+                ],
+                exp: '«Completamente averiada» concuerda en femenino singular con el CD («la motocicleta») y permanece si pronominalizamos: «Nos la devolvió completamente averiada» → C. Predicativo del CD.'
+            },
+            {
+                level: '3. Doble complementación (CD + CRég)',
+                chunks: [
+                    { text: 'Desgraciadamente,', ans: 'MOD. ORACIONAL' },
+                    { text: 'nadie', ans: 'SUJETO' },
+                    { text: 'informó', ans: 'NÚCLEO VERBAL' },
+                    { text: 'a los pasajeros', ans: 'CD' },
+                    { text: 'de la cancelación del vuelo', ans: 'C. RÉGIMEN' }
+                ],
+                exp: '«Desgraciadamente» va entre pausas y valora toda la oración (Mod. Oracional). En el estándar peninsular, «informar a alguien [CD: los informaron] de algo [C. Régimen]» combina ambos argumentos.'
+            },
+            {
+                level: '4. Verbo Semicopulativo',
+                chunks: [
+                    { text: 'Mis compañeros de departamento', ans: 'SUJETO' },
+                    { text: 'se quedaron', ans: 'NÚCLEO VERBAL' },
+                    { text: 'perplejos', ans: 'ATRIBUTO' },
+                    { text: 'ante aquella noticia', ans: 'CC' }
+                ],
+                exp: '«Quedarse» funciona aquí como verbo semicopulativo de cambio de estado (equivale a pasar a estar perplejos), por lo que según la NGLE «perplejos» es Atributo.'
+            },
+            {
+                level: '5. Pasiva Perifrástica Completa',
+                chunks: [
+                    { text: 'Los presupuestos generales', ans: 'SUJETO' },
+                    { text: 'fueron rechazados', ans: 'NÚCLEO VERBAL' },
+                    { text: 'en el Congreso', ans: 'CC' },
+                    { text: 'por la mayoría absoluta', ans: 'C. AGENTE' }
+                ],
+                exp: 'Oración en voz pasiva perifrástica (ser + participio): «Los presupuestos generales» es el Sujeto Paciente y el SPrep encabezado por «por» es el Complemento Agente.'
+            },
+            {
+                level: '6. Impersonal Gramaticalizada con «Haber»',
+                chunks: [
+                    { text: 'Durante el festival', ans: 'CC' },
+                    { text: 'hubo', ans: 'NÚCLEO VERBAL' },
+                    { text: 'numerosas actuaciones musicales', ans: 'CD' },
+                    { text: 'en la plaza mayor', ans: 'CC' }
+                ],
+                exp: 'El verbo «haber» en 3.ª persona del singular como verbo existencial es SIEMPRE impersonal (no tiene sujeto). «Numerosas actuaciones musicales» es el CD («Las hubo»).'
+            },
+            {
+                level: '7. Pasiva Refleja con Sujeto Paciente',
+                chunks: [
+                    { text: 'En la próxima cumbre', ans: 'CC' },
+                    { text: 'se debatirán', ans: 'NÚCLEO VERBAL' },
+                    { text: 'esos tratados internacionales', ans: 'SUJETO' },
+                    { text: 'con mucho rigor', ans: 'CC' }
+                ],
+                exp: 'Es una Pasiva Refleja («se debatirán» = serán debatidos). «Esos tratados internacionales» concuerda en plural con el verbo y funciona como Sujeto Paciente.'
+            },
+            {
+                level: '8. Impersonal Refleja con CD de persona',
+                chunks: [
+                    { text: 'En esta empresa', ans: 'CC' },
+                    { text: 'se valora', ans: 'NÚCLEO VERBAL' },
+                    { text: 'muchísimo', ans: 'CC' },
+                    { text: 'a los trabajadores veteranos', ans: 'CD' }
+                ],
+                exp: 'Al llevar la preposición «a» delante de persona («a los trabajadores veteranos»), ese sintagma NO puede ser sujeto: es el CD (se los valora), y la oración es Impersonal Refleja.'
+            },
+            {
+                level: '9. C. Predicativo del Sujeto vs. CCM',
+                chunks: [
+                    { text: 'Los excursionistas', ans: 'SUJETO' },
+                    { text: 'descendieron', ans: 'NÚCLEO VERBAL' },
+                    { text: 'exhaustos', ans: 'C. PREDICATIVO' },
+                    { text: 'por la ladera norte', ans: 'CC' }
+                ],
+                exp: '«Exhaustos» es un SAdj que modifica al verbo pleno «descendieron» y a la vez concuerda en masculino plural con el sujeto «Los excursionistas» → C. Predicativo del Sujeto.'
+            },
+            {
+                level: '10. Sujeto con adverbio inclusivo «Hasta»',
+                chunks: [
+                    { text: 'Hasta los analistas más optimistas', ans: 'SUJETO' },
+                    { text: 'desconfían', ans: 'NÚCLEO VERBAL' },
+                    { text: 'hoy', ans: 'CC' },
+                    { text: 'de esas promesas electorales', ans: 'C. RÉGIMEN' }
+                ],
+                exp: '«Hasta» aquí equivale a «incluso» (adverbio focalizador, no preposición), por lo que todo el SN «Hasta los analistas más optimistas» es el Sujeto. «Desconfiar de algo» exige C. Régimen.'
+            },
+            {
+                level: '11. Doble Predicación Nominal (Nombrar/Elegir)',
+                chunks: [
+                    { text: 'El claustro de profesores', ans: 'SUJETO' },
+                    { text: 'eligió', ans: 'NÚCLEO VERBAL' },
+                    { text: 'coordinadora de ciclo', ans: 'C. PREDICATIVO' },
+                    { text: 'a mi compañera de Latín', ans: 'CD' }
+                ],
+                exp: 'Con verbos designativos (elegir, nombrar, proclamar), la persona elegida («a mi compañera») es el CD (La eligieron) y el cargo («coordinadora de ciclo») es el C. Predicativo del CD.'
+            },
+            {
+                level: '12. Atributo Locativo / Preposicional',
+                chunks: [
+                    { text: 'Efectivamente,', ans: 'MOD. ORACIONAL' },
+                    { text: 'aquellos manuscritos medievales', ans: 'SUJETO' },
+                    { text: 'eran', ans: 'NÚCLEO VERBAL' },
+                    { text: 'de un valor incalculable', ans: 'ATRIBUTO' }
+                ],
+                exp: 'El SPrep «de un valor incalculable» equivale al adjetivo «valiosísimos» y se sustituye por el pronombre neutro «lo» («Lo eran») → Atributo.'
+            },
+            {
+                level: '13. Clíticos combinados (CI + CD)',
+                chunks: [
+                    { text: 'Mañana por la mañana', ans: 'CC' },
+                    { text: 'el secretario', ans: 'SUJETO' },
+                    { text: 'se', ans: 'CI' },
+                    { text: 'lo', ans: 'CD' },
+                    { text: 'entregará', ans: 'NÚCLEO VERBAL' },
+                    { text: 'en mano', ans: 'CC' }
+                ],
+                exp: 'En la secuencia «se lo entregará», «se» es variante contextual de «le/les» (CI) y «lo» es el clítico acusativo (CD).'
+            },
+            {
+                level: '14. Pasiva Perifrástica con PVO del Sujeto Paciente',
+                chunks: [
+                    { text: 'El acusado', ans: 'SUJETO' },
+                    { text: 'fue declarado', ans: 'NÚCLEO VERBAL' },
+                    { text: 'inocente', ans: 'C. PREDICATIVO' },
+                    { text: 'por el jurado popular', ans: 'C. AGENTE' }
+                ],
+                exp: 'En la pasiva perifrástica de un verbo designativo/valorativo, «inocente» concuerda con el Sujeto Paciente («El acusado») y funciona como C. Predicativo.'
+            },
+            {
+                level: '15. Verbo pronominal con C. Régimen',
+                chunks: [
+                    { text: 'Sinceramente,', ans: 'MOD. ORACIONAL' },
+                    { text: 'los inversores', ans: 'SUJETO' },
+                    { text: 'se arrepintieron', ans: 'NÚCLEO VERBAL' },
+                    { text: 'muy pronto', ans: 'CC' },
+                    { text: 'de aquella operación financiera', ans: 'C. RÉGIMEN' }
+                ],
+                exp: '«Arrepentirse» es un verbo obligatoriamente pronominal (el «se» forma parte del núcleo verbal) que rige la preposición «de» → C. Régimen.'
+            },
+            {
+                level: '16. CI Posesivo / Simpatético',
+                chunks: [
+                    { text: 'El traumatólogo', ans: 'SUJETO' },
+                    { text: 'le', ans: 'CI' },
+                    { text: 'vendó', ans: 'NÚCLEO VERBAL' },
+                    { text: 'cuidadosamente', ans: 'CC' },
+                    { text: 'el tobillo izquierdo', ans: 'CD' },
+                    { text: 'al jugador lesionado', ans: 'CI' }
+                ],
+                exp: '«El tobillo izquierdo» es el CD («Se lo vendó») y «al jugador lesionado» (duplicado por «le») es el CI posesivo.'
+            },
+            {
+                level: '17. Verbo de medida argumental',
+                chunks: [
+                    { text: 'Según los peritos,', ans: 'MOD. ORACIONAL' },
+                    { text: 'aquella grieta del muro', ans: 'SUJETO' },
+                    { text: 'medía', ans: 'NÚCLEO VERBAL' },
+                    { text: 'casi tres metros', ans: 'CD' }
+                ],
+                exp: 'Los verbos de medida como «medir, pesar, costar» seleccionan un argumento cuantitativo que se pronominaliza por «los» → CD de medida.'
+            },
+            {
+                level: '18. Verbo Semicopulativo «Resultar»',
+                chunks: [
+                    { text: 'Las negociaciones de paz', ans: 'SUJETO' },
+                    { text: 'resultaron', ans: 'NÚCLEO VERBAL' },
+                    { text: 'extremadamente complejas', ans: 'ATRIBUTO' },
+                    { text: 'desde el primer día', ans: 'CC' }
+                ],
+                exp: '«Resultar» funciona aquí como verbo semicopulativo equivalente a «ser», por lo que el SAdj «extremadamente complejas» es Atributo.'
+            },
+            {
+                level: '19. Reflexiva Indirecta (SE = CI)',
+                chunks: [
+                    { text: 'Antes de la entrevista,', ans: 'CC' },
+                    { text: 'el candidato', ans: 'SUJETO' },
+                    { text: 'se', ans: 'CI' },
+                    { text: 'ajustó', ans: 'NÚCLEO VERBAL' },
+                    { text: 'el nudo de la corbata', ans: 'CD' }
+                ],
+                exp: 'Es reflexiva (a sí mismo), pero como «el nudo de la corbata» desempeña la función de CD, el pronombre «se» cumple la función de CI.'
+            },
+            {
+                level: '20. Construcción de transferencia con CRég',
+                chunks: [
+                    { text: 'Por prudencia,', ans: 'CC' },
+                    { text: 'el capitán del buque', ans: 'SUJETO' },
+                    { text: 'advirtió', ans: 'NÚCLEO VERBAL' },
+                    { text: 'a la tripulación', ans: 'CD' },
+                    { text: 'del peligro de tormenta', ans: 'C. RÉGIMEN' }
+                ],
+                exp: '«Advertir a alguien (CD: la advirtió) de algo (C. Régimen: del peligro)» presenta doble complementación argumental.'
+            }
+        ];
+
+        let currentLabIdx = 0;
+        let selectedChunkIdx = null;
+        let userLabTags = [];
+
+        function renderLabSentence() {
+            const item = labSentences[currentLabIdx];
+            document.getElementById('lab-counter').textContent = `Oración ${currentLabIdx + 1} de ${labSentences.length}`;
+            document.getElementById('lab-difficulty').textContent = item.level;
+            document.getElementById('lab-feedback').className = 'feedback-panel';
+            document.getElementById('btn-lab-next').style.display = 'none';
+            document.getElementById('btn-lab-check').style.display = 'inline-flex';
+
+            selectedChunkIdx = 0;
+            userLabTags = new Array(item.chunks.length).fill(null);
+
+            drawLabChunks();
+            drawLabPalette();
+        }
+
+        function drawLabChunks() {
+            const item = labSentences[currentLabIdx];
+            const container = document.getElementById('lab-chunks');
+            container.innerHTML = '';
+
+            item.chunks.forEach((ch, idx) => {
+                const div = document.createElement('div');
+                div.className = 'synt-chunk' + (selectedChunkIdx === idx ? ' selected' : '') + (userLabTags[idx] ? ' tagged' : '');
+                div.onclick = () => {
+                    playTone('click');
+                    selectedChunkIdx = idx;
+                    drawLabChunks();
+                };
+                div.innerHTML = `
+                    <span class="chunk-words">${ch.text}</span>
+                    <span class="chunk-tag">${userLabTags[idx] || '¿Función?'}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function drawLabPalette() {
+            const pal = document.getElementById('lab-palette');
+            pal.innerHTML = '';
+            labFunctions.forEach(fn => {
+                const btn = document.createElement('button');
+                btn.className = 'fn-btn';
+                btn.textContent = fn;
+                btn.onclick = () => {
+                    if (selectedChunkIdx === null) return;
+                    playTone('click');
+                    userLabTags[selectedChunkIdx] = fn;
+                    const nextNull = userLabTags.findIndex((val, i) => val === null && i > selectedChunkIdx);
+                    if (nextNull !== -1) selectedChunkIdx = nextNull;
+                    else {
+                        const firstNull = userLabTags.findIndex(val => val === null);
+                        if (firstNull !== -1) selectedChunkIdx = firstNull;
+                    }
+                    drawLabChunks();
+                };
+                pal.appendChild(btn);
+            });
+        }
+
+        function clearLabSelection() {
+            playTone('click');
+            userLabTags.fill(null);
+            selectedChunkIdx = 0;
+            drawLabChunks();
+            document.getElementById('lab-feedback').className = 'feedback-panel';
+        }
+
+        function checkLabSentence() {
+            const item = labSentences[currentLabIdx];
+            if (userLabTags.some(t => t === null)) {
+                alert('Por favor, asigna una función a todos los bloques de la oración antes de verificar.');
+                return;
+            }
+
+            let allCorrect = true;
+            let details = [];
+            item.chunks.forEach((ch, i) => {
+                if (userLabTags[i] !== ch.ans) {
+                    allCorrect = false;
+                    details.push(`• En <strong>«${ch.text}»</strong> pusiste <em>${userLabTags[i]}</em> y es <strong>${ch.ans}</strong>.`);
+                }
+            });
+
+            const fb = document.getElementById('lab-feedback');
+            if (allCorrect) {
+                playTone('ok');
+                fb.className = 'feedback-panel show ok';
+                fb.innerHTML = `<strong>✅ ¡Análisis impecable! (+30 XP)</strong><br>${item.exp}`;
+                if (state.labDone < currentLabIdx + 1) {
+                    state.labDone = currentLabIdx + 1;
+                    addXP(30);
+                }
+            } else {
+                playTone('err');
+                fb.className = 'feedback-panel show err';
+                fb.innerHTML = `<strong>❌ Hay desajustes en tu análisis:</strong><br>${details.join('<br>')}<br><br><strong>Explicación gramatical:</strong> ${item.exp}`;
+            }
+
+            document.getElementById('btn-lab-check').style.display = 'none';
+            document.getElementById('btn-lab-next').style.display = 'inline-flex';
+        }
+
+        function nextLabSentence() {
+            currentLabIdx = (currentLabIdx + 1) % labSentences.length;
+            renderLabSentence();
+        }
+
+        /* ==========================================================================
+           JUEGO 2: EL TRIBUNAL DE LOS 7 VALORES DE «SE» (AMPLIADO A 25 CASOS)
+           ========================================================================== */
+        const seCategories = [
+            '1. Variante de LE/LES (CI)',
+            '2. Reflexivo (CD o CI)',
+            '3. Recíproco (CD o CI)',
+            '4. Dativo Ético / Aspectual',
+            '5. Morfema Verbal Pronominal / Voz Media',
+            '6. Marca de Pasiva Refleja',
+            '7. Marca de Impersonal Refleja'
+        ];
+
+        const seCases = [
+            { s: 'Ayer se clausuraron las jornadas de teatro clásico en Mérida.', ans: 5, exp: 'Verbo transitivo en plural concordando con el sujeto paciente «las jornadas de teatro clásico» → Pasiva Refleja.' },
+            { s: 'Mi hermano pequeño se ató los cordones de las zapatillas sin ayuda.', ans: 1, exp: 'Admite «a sí mismo» (Reflexivo). Como ya existe un CD («los cordones»), «se» desempeña la función de CI.' },
+            { s: 'En este restaurante de la costa se come maravillosamente.', ans: 6, exp: 'Verbo en 3.ª persona del singular sin sujeto léxico posible → Marca de Impersonal Refleja.' },
+            { s: 'Como tenía mucha sed, se bebió un litro de agua de un trago.', ans: 3, exp: 'Se puede suprimir sin alterar la oración («Bebió un litro de agua»). Es un Dativo Aspectual enfático.' },
+            { s: 'Cuando vi a la profesora, se lo expliqué todo con sinceridad.', ans: 0, exp: 'Equivale a «Le expliqué todo a la profesora». Evoluciona de «le» a «se» ante «lo» → Variante de LE (CI).' },
+            { s: 'Los dos tenistas se felicitaron deportivamente junto a la red.', ans: 2, exp: 'Acción mutua entre dos agentes («el uno al otro»). Funciona como CD → Recíproco.' },
+            { s: 'Nuestros primos se quejan constantemente del tráfico matutino.', ans: 4, exp: 'El verbo «quejarse» no existe sin el pronombre (*quejar). Es un verbo pronominal puro → Morfema Verbal Pronominal.' },
+            { s: 'En la rueda de prensa se convocó a todos los corresponsales extranjeros.', ans: 6, exp: '«A todos los corresponsales» lleva preposición «a» (es CD de persona). No hay sujeto → Impersonal Refleja.' },
+            { s: 'Con las fuertes lluvias de otoño se inundó el garaje comunitario.', ans: 4, exp: 'Proceso fortuito no provocado por un agente humano externo sobre el sujeto «el garaje» → Voz Media / Morfema Pronominal.' },
+            { s: 'Los embajadores se intercambiaron varios documentos confidenciales.', ans: 2, exp: 'Recíproco con función de CI, ya que «varios documentos confidenciales» es el CD.' },
+            { s: 'Se alquilan apartamentos turísticos durante el mes de agosto.', ans: 5, exp: '«Apartamentos turísticos» concuerda en plural con «alquilan» → Sujeto Paciente en Pasiva Refleja.' },
+            { s: 'El acusado no se arrepintió de sus palabras ante el tribunal.', ans: 4, exp: '«Arrepentirse» es un verbo obligatoriamente pronominal que rige C. Régimen («de sus palabras»).' },
+            { s: '¡No te imaginas cómo se puso mi padre cuando vio la factura!', ans: 4, exp: '«Ponerse» funciona como verbo semicopulativo pronominal de cambio de estado.' },
+            { s: '¿Todavía no le has devuelto los apuntes a Clara? ¡Devuélveselos hoy mismo!', ans: 0, exp: 'En «devuélve-se-los», «se» sustituye a «a Clara» (CI) delante del clítico acusativo «los» (CD).' },
+            { s: 'El delantero centro se lesionó el tobillo derecho en el calentamiento.', ans: 3, exp: 'Aunque afecta a su cuerpo, nadie se lesiona voluntariamente a sí mismo; la NGLE lo clasifica como dativo simpatético/posesivo o construcción media.' },
+            { s: 'Se aprobó el nuevo reglamento escolar por unanimidad.', ans: 5, exp: '«El nuevo reglamento escolar» es el Sujeto Paciente singular (Si fuera plural: «Se aprobaron los nuevos reglamentos») → Pasiva Refleja.' },
+            { s: 'En los vagones silenciosos del AVE no se puede hablar por teléfono.', ans: 6, exp: 'Perífrasis «poder + hablar» (intransitivo) en 3.ª singular sin sujeto léxico → Impersonal Refleja.' },
+            { s: 'Aquellos dos hermanos no se dirigen la palabra desde el año pasado.', ans: 2, exp: 'Recíproco con función de CI («el uno al otro»), mientras que «la palabra» funciona como CD.' },
+            { s: 'El niño se aprendió todos los ríos de España en una sola tarde.', ans: 3, exp: 'Dativo aspectual o superfluo: puede omitirse («El niño aprendió todos los ríos...») sin pérdida de gramaticalidad.' },
+            { s: 'Nadie se atrevió a contradecir las órdenes de la capitana.', ans: 4, exp: '«Atreverse» es un verbo pronominal puro (no existe *atrever en español actual) → Morfema Verbal Pronominal.' },
+            { s: 'El actor principal se contempla en el espejo antes de salir a escena.', ans: 1, exp: 'Acción reflexiva directa sobre sí mismo sin otro CD presente → Reflexivo con función de CD.' },
+            { s: 'A los premiados se les entregará el diploma acreditativo mañana.', ans: 6, exp: '¡Cuidado! En el estándar es Pasiva Refleja («el diploma» = sujeto), pero si se inmoviliza con CI duplicado sin sujeto humano, actúa como marca impersonal/pasiva refleja.' },
+            { s: 'Con el calor del mediodía se derritió el helado de chocolate.', ans: 4, exp: 'Construcción de Voz Media (proceso físico espontáneo que experimenta el sujeto «el helado») → Morfema Pronominal.' },
+            { s: 'Como los niños tenían hambre, les preparé la merienda y se la serví.', ans: 0, exp: 'En «se la serví», «se» sustituye a «a los niños» (CI) delante del pronombre «la» (CD).' },
+            { s: 'Se está sumamente a gusto en esta terraza frente al mar.', ans: 6, exp: '«Estar» (verbo copulativo) con «se» en 3.ª persona del singular sin sujeto → Marca de Impersonal Refleja.' }
+        ];
+
+        let currentSeIdx = 0;
+        let seStreak = 0;
+
+        function renderSeCase() {
+            const item = seCases[currentSeIdx];
+            document.getElementById('se-counter').textContent = `Caso ${currentSeIdx + 1} / ${seCases.length}`;
+            document.getElementById('se-streak').textContent = `🔥 Racha: ${seStreak}`;
+            document.getElementById('se-sentence').innerHTML = item.s.replace(/\b(se|Se|Devuélveselos)\b/g, '<strong style="text-decoration:underline; color:var(--accent);">$1</strong>');
+            document.getElementById('se-feedback').className = 'feedback-panel';
+            document.getElementById('btn-se-next').style.display = 'none';
+
+            const grid = document.getElementById('se-options');
+            grid.innerHTML = '';
+            seCategories.forEach((cat, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'option-card';
+                btn.textContent = cat;
+                btn.onclick = () => selectSeOption(idx, btn);
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectSeOption(idx, btnEl) {
+            const item = seCases[currentSeIdx];
+            const cards = document.querySelectorAll('#se-options .option-card');
+            cards.forEach(c => c.onclick = null);
+
+            const fb = document.getElementById('se-feedback');
+            if (idx === item.ans) {
+                playTone('ok');
+                btnEl.classList.add('correct');
+                seStreak++;
+                fb.className = 'feedback-panel show ok';
+                fb.innerHTML = `<strong>✅ ¡Dictamen Correcto! (+20 XP)</strong><br>${item.exp}`;
+                if (state.seDone < currentSeIdx + 1) {
+                    state.seDone = currentSeIdx + 1;
+                    addXP(20);
+                }
+            } else {
+                playTone('err');
+                btnEl.classList.add('wrong');
+                cards[item.ans].classList.add('correct');
+                seStreak = 0;
+                fb.className = 'feedback-panel show err';
+                fb.innerHTML = `<strong>❌ Dictamen Erróneo.</strong> La respuesta correcta era <strong>${seCategories[item.ans]}</strong>.<br>${item.exp}`;
+            }
+            document.getElementById('se-streak').textContent = `🔥 Racha: ${seStreak}`;
+            document.getElementById('btn-se-next').style.display = 'inline-flex';
+        }
+
+        function nextSeCase() {
+            currentSeIdx = (currentSeIdx + 1) % seCases.length;
+            renderSeCase();
+        }
+
+        /* ==========================================================================
+           JUEGO 3: CAZADOR DE IMPERSONALES Y PASIVAS (AMPLIADO A 20 MUESTRAS)
+           ========================================================================== */
+        const impCategories = [
+            'Impersonal Gramaticalizada (Haber/Hacer/Ser)',
+            'Impersonal Refleja (con SE, sin sujeto)',
+            'Impersonal Meteorológica o Eventual',
+            'Pasiva Refleja (con Sujeto Paciente)',
+            'Personal Activa (con Sujeto expreso o tácito)'
+        ];
+
+        const impCases = [
+            { s: 'Había demasiados coches mal aparcados en la avenida.', ans: 0, exp: '«Haber» existencial en 3.ª pers. singular es siempre Impersonal Gramaticalizada. «Demasiados coches...» es el CD.' },
+            { s: 'Se difundieron varios bulos infundados por las redes sociales.', ans: 3, exp: '«Varios bulos infundados» concuerda en plural con «difundieron» → Es el Sujeto Paciente de una Pasiva Refleja.' },
+            { s: 'En las zonas de alta montaña granizó con muchísima fuerza.', ans: 2, exp: 'Verbo meteorológico («granizar») empleado en sentido recto → Impersonal Meteorológica.' },
+            { s: 'Al candidato le llovieron las ofertas de trabajo tras el congreso.', ans: 4, exp: '¡Cuidado! Uso metafórico de «llover» en plural: «las ofertas de trabajo» es el Sujeto léxico → Personal Activa.' },
+            { s: 'Se auxilió de inmediato a los excursionistas extraviados.', ans: 1, exp: 'Lleva CD de persona con preposición «a» («a los excursionistas») y verbo en 3.ª singular → Impersonal Refleja.' },
+            { s: 'Dicen en el barrio que abrirán una biblioteca municipal.', ans: 2, exp: 'Verbo en 3.ª persona del plural sin referente concreto (sujeto indeterminado) → Impersonal Eventual.' },
+            { s: 'Hoy hace exactamente veinte años de aquel histórico partido.', ans: 0, exp: '«Hacer» temporal fijado en 3.ª persona del singular → Impersonal Gramaticalizada.' },
+            { s: 'A los turistas extranjeros les fascina la gastronomía andaluza.', ans: 4, exp: '«La gastronomía andaluza» concuerda con «fascina» y es el Sujeto → Personal Activa.' },
+            { s: 'En la biblioteca del instituto se trabaja en absoluto silencio.', ans: 1, exp: '«Trabajar» es intransitivo y va con «se» en 3.ª pers. singular → Impersonal Refleja.' },
+            { s: 'Se han restaurado las vidrieras góticas de la catedral.', ans: 3, exp: '«Las vidrieras góticas» es el Sujeto Paciente que concuerda en plural con «han restaurado» → Pasiva Refleja.' },
+            { s: 'Ya es bastante tarde para llamar por teléfono.', ans: 0, exp: '«Ser» con expresión temporal («tarde») sin sujeto → Impersonal Gramaticalizada.' },
+            { s: 'Basta con dos firmas autorizadas para validar el contrato.', ans: 0, exp: 'El verbo «bastar» en la construcción «basta con + SN» es Impersonal Gramaticalizada (su complemento es C. Régimen).' },
+            { s: 'Se inauguró el nuevo pabellón deportivo con gran asistencia.', ans: 3, exp: '«El nuevo pabellón deportivo» es un SN sin preposición que concuerda con el verbo (Se inauguraron los pabellones) → Pasiva Refleja.' },
+            { s: 'En este hospital comarcal se vacuna a los niños por las mañanas.', ans: 1, exp: '«A los niños» es CD animado con preposición «a»; el verbo es inamovible en singular → Impersonal Refleja.' },
+            { s: 'Mañana habrá tormentas eléctricas en el litoral mediterráneo.', ans: 0, exp: '«Habrá» es el futuro del verbo «haber» impersonal; «tormentas eléctricas» funciona como CD.' },
+            { s: 'Me han llamado tres veces desde un número oculto.', ans: 2, exp: '3.ª persona del plural («han llamado») cuando el agente real es una única persona desconocida → Impersonal Eventual.' },
+            { s: 'Nos faltan todavía dos capítulos para terminar el temario.', ans: 4, exp: '«Dos capítulos» concuerda en plural con «faltan» → Es el Sujeto de una oración Personal Activa.' },
+            { s: 'En el norte de Escocia nieva copiosamente cada mes de enero.', ans: 2, exp: 'Verbo meteorológico puro en 3.ª persona del singular → Impersonal Meteorológica.' },
+            { s: 'Se resolvieron todas las dudas gramaticales antes del examen.', ans: 3, exp: '«Todas las dudas gramaticales» es el Sujeto Paciente concordado → Pasiva Refleja.' },
+            { s: 'Con un poco de paciencia se llega muy lejos en la vida.', ans: 1, exp: '«Llegar» es un verbo intransitivo construido con «se» en 3.ª singular → Impersonal Refleja.' }
+        ];
+
+        let currentImpIdx = 0;
+        let impHits = 0;
+
+        function renderImpCase() {
+            const item = impCases[currentImpIdx];
+            document.getElementById('imp-counter').textContent = `Muestra ${currentImpIdx + 1} / ${impCases.length}`;
+            document.getElementById('imp-score').textContent = `Aciertos: ${impHits}`;
+            document.getElementById('imp-sentence').textContent = `«${item.s}»`;
+            document.getElementById('imp-feedback').className = 'feedback-panel';
+            document.getElementById('btn-imp-next').style.display = 'none';
+
+            const grid = document.getElementById('imp-options');
+            grid.innerHTML = '';
+            impCategories.forEach((cat, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'option-card';
+                btn.textContent = cat;
+                btn.onclick = () => selectImpOption(idx, btn);
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectImpOption(idx, btnEl) {
+            const item = impCases[currentImpIdx];
+            const cards = document.querySelectorAll('#imp-options .option-card');
+            cards.forEach(c => c.onclick = null);
+
+            const fb = document.getElementById('imp-feedback');
+            if (idx === item.ans) {
+                playTone('ok');
+                btnEl.classList.add('correct');
+                impHits++;
+                fb.className = 'feedback-panel show ok';
+                fb.innerHTML = `<strong>✅ ¡Exacto! (+20 XP)</strong><br>${item.exp}`;
+                if (state.impDone < currentImpIdx + 1) {
+                    state.impDone = currentImpIdx + 1;
+                    addXP(20);
+                }
+            } else {
+                playTone('err');
+                btnEl.classList.add('wrong');
+                cards[item.ans].classList.add('correct');
+                fb.className = 'feedback-panel show err';
+                fb.innerHTML = `<strong>❌ Error de clasificación.</strong> Era: <strong>${impCategories[item.ans]}</strong>.<br>${item.exp}`;
+            }
+            document.getElementById('imp-score').textContent = `Aciertos: ${impHits}`;
+            document.getElementById('btn-imp-next').style.display = 'inline-flex';
+        }
+
+        function nextImpCase() {
+            currentImpIdx = (currentImpIdx + 1) % impCases.length;
+            renderImpCase();
+        }
+
+        /* ==========================================================================
+           JUEGO 4: TRIVIAL SINTÁCTICO PAU / 1.º BACHILLERATO (AMPLIADO A 30 PREGUNTAS)
+           ========================================================================== */
+        const trivQuestions = [
+            {
+                q: '1. En la oración «A mis abuelos les encantan las películas clásicas», ¿qué función desempeña «las películas clásicas»?',
+                opts: ['Complemento Directo (CD)', 'Sujeto', 'Atributo', 'Complemento Predicativo'],
+                ans: 1,
+                hint: 'Cambia «las películas clásicas» a singular («la película clásica») y observa qué le ocurre al verbo «encantan».',
+                exp: 'Es el Sujeto porque concuerda obligatoriamente en número y persona con el verbo («Me encanta esa película / Me encantan esas películas»).'
+            },
+            {
+                q: '2. ¿Cuál es la diferencia sintáctica entre «La asamblea eligió presidente a Marcos» y «La asamblea eligió el proyecto de Marcos»?',
+                opts: [
+                    'En la primera, «presidente» es C. Predicativo del CD; en la segunda, «el proyecto» es CD.',
+                    'En ambas hay dos Complementos Directos.',
+                    'En la primera, «presidente» es Atributo.',
+                    'En la primera, «a Marcos» es CI.'
+                ],
+                ans: 0,
+                hint: 'En «Lo eligieron presidente», un sintagma se pronominaliza por «lo» y el otro se queda fuera.',
+                exp: 'En «eligió presidente a Marcos», «a Marcos» es el CD (Lo eligieron) y «presidente» es el Complemento Predicativo del CD.'
+            },
+            {
+                q: '3. Según la NGLE, en «Mi hermano se puso colorado de repente», ¿qué función tiene el adjetivo «colorado»?',
+                opts: ['CC de Modo', 'Complemento Directo', 'Atributo (con verbo semicopulativo)', 'Sujeto pospuesto'],
+                ans: 2,
+                hint: '«Ponerse» aquí ha perdido su significado de colocar algo con las manos y equivale a «pasar a estar».',
+                exp: 'Los verbos de cambio de estado como «ponerse, volverse, quedarse» son semicopulativos y seleccionan un Atributo.'
+            },
+            {
+                q: '4. En «Francamente, no confío en sus disculpas», ¿cómo se analiza el adverbio «Francamente»?',
+                opts: [
+                    'CC de Modo del verbo confiar',
+                    'Modificador Oracional (o Adjunto Periférico)',
+                    'Complemento Predicativo',
+                    'Atributo oracional'
+                ],
+                ans: 1,
+                hint: 'Va aislado por coma al inicio y expresa la actitud sincera del hablante al emitir el enunciado.',
+                exp: 'No indica el modo de confiar, sino la franqueza con la que habla el emisor: es un Modificador Oracional.'
+            },
+            {
+                q: '5. ¿En cuál de las siguientes oraciones la palabra «lo» NO funciona como Complemento Directo?',
+                opts: [
+                    'El documento lo firmamos ayer.',
+                    'A tu primo lo vi en el gimnasio.',
+                    'Esos argumentos parecen sólidos, pero no lo son.',
+                    'El café lo prefiero sin azúcar.'
+                ],
+                ans: 2,
+                hint: 'Fíjate en cuál de las cuatro opciones tiene un verbo copulativo.',
+                exp: 'Con los verbos copulativos «ser, estar, parecer», el pronombre neutro «lo» desempeña siempre la función de Atributo.'
+            },
+            {
+                q: '6. En «La conferencia duró tres horas», el sintagma nominal «tres horas» funciona en la NGLE como:',
+                opts: ['Sujeto', 'CD de medida argumental (o CC de Cantidad/Duración)', 'Atributo temporal', 'C. Régimen'],
+                ans: 1,
+                hint: 'Verbos como medir, pesar, costar o durar admiten pronominalización acusativa («Las duró / Los pesa»).',
+                exp: 'Los complementos de medida con verbos como pesar, costar, medir o durar se consideran argumentos de medida asimilados al CD.'
+            },
+            {
+                q: '7. Identifica la única oración PASIVA REFLEJA entre las siguientes:',
+                opts: [
+                    'En este hotel se trata muy bien a los clientes.',
+                    'Se construyeron dos puentes colgantes sobre el río.',
+                    'Los jugadores se ataron las botas en el vestuario.',
+                    'Se vive con mucha tranquilidad en este pueblo.'
+                ],
+                ans: 1,
+                hint: 'Busca un verbo en plural que concuerde con un sintagma nominal inanimado sin preposición.',
+                exp: 'En «Se construyeron dos puentes», «dos puentes» es el Sujeto Paciente (= Fueron construidos dos puentes).'
+            },
+            {
+                q: '8. En «El perro ladraba furioso tras la verja», ¿por qué «furioso» es C. Predicativo y no CC de Modo?',
+                opts: [
+                    'Porque va detrás del verbo.',
+                    'Porque es un adjetivo que concuerda en género y número con el sujeto («La perra ladraba furiosa»).',
+                    'Porque «ladrar» es un verbo copulativo.',
+                    'Porque se sustituye por el pronombre «lo».'
+                ],
+                ans: 1,
+                hint: 'Los adverbios (CC de Modo) son invariables; los adjetivos predicativos concuerdan.',
+                exp: 'Al ser un SAdj que concuerda con el sujeto («El perro → furioso / Los perros → furiosos») y modificar a un verbo pleno, es C. Predicativo.'
+            },
+            {
+                q: '9. ¿Qué función cumple «de su infancia» en «Aquel anciano se acordaba siempre de su infancia»?',
+                opts: ['Complemento del Nombre', 'Complemento Circunstancial de Causa', 'Complemento de Régimen (Suplemento)', 'Complemento Directo'],
+                ans: 2,
+                hint: 'El verbo pronominal «acordarse» exige obligatoriamente la preposición «de» (acordarse de eso).',
+                exp: 'Es un SPrep argumental cuya preposición viene regida por el verbo pronominal «acordarse de» → C. Régimen.'
+            },
+            {
+                q: '10. En «Le revisaron la vista al paciente», ¿qué funciones tienen «la vista» y «al paciente»?',
+                opts: [
+                    '«la vista» es Sujeto y «al paciente» es CD.',
+                    '«la vista» es CD y «al paciente» es CI (duplicado por «le»).',
+                    'Ambos son Complementos Directos.',
+                    '«la vista» es Atributo y «al paciente» es CI.'
+                ],
+                ans: 1,
+                hint: 'Sustituye ambos por pronombres átonos: «Se la revisaron».',
+                exp: '«La vista» se sustituye por «la» (CD) y «al paciente» por «le / se» (CI posesivo o simpatético).'
+            },
+            {
+                q: '11. ¿Qué valor tiene «SE» en «A María se le cayó el jarrón de cristal al suelo»?',
+                opts: [
+                    'Reflexivo de CI',
+                    'Morfema verbal de voz media / proceso fortuito (con dativo «le»)',
+                    'Impersonal refleja',
+                    'Variante de «le» ante «lo»'
+                ],
+                ans: 1,
+                hint: 'En la construcción «caérsele algo a alguien», «el jarrón» es el sujeto de un suceso involuntario.',
+                exp: 'Es una construcción media involuntaria («caerse») combinada con un CI de persona afectada («le / a María»).'
+            },
+            {
+                q: '12. En «Había mucha niebla en la autopista», si ponemos el verbo en pasado perfecto simple, la única forma correcta es:',
+                opts: [
+                    'Hubieron muchas nieblas.',
+                    'Hubo mucha niebla (y en plural también «Hubo muchas quejas», nunca *hubieron).',
+                    'Habían muchas nieblas.',
+                    'Fueron habidas muchas nieblas.'
+                ],
+                ans: 1,
+                hint: '«Haber» existencial carece de sujeto; por tanto, jamás puede ir en plural.',
+                exp: 'Al ser impersonal gramaticalizada y funcionar el SN como CD, el verbo se inmoviliza siempre en singular: «Hubo fiestas / Había problemas».'
+            },
+            {
+                q: '13. En «El tribunal declaró inocente al acusado», ¿qué ocurre si pasamos la oración a pasiva perifrástica?',
+                opts: [
+                    'No admite pasiva.',
+                    '«El acusado fue declarado inocente por el tribunal», donde «inocente» pasa de PVO del CD a PVO del Sujeto Paciente.',
+                    '«Inocente» pasa a ser el Sujeto Paciente.',
+                    '«Al acusado» sigue siendo CD.'
+                ],
+                ans: 1,
+                hint: 'El CD («al acusado») se convierte en Sujeto Paciente y el predicativo pasa a concordar con ese nuevo sujeto.',
+                exp: 'En la pasiva («El acusado fue declarado inocente»), «inocente» sigue siendo C. Predicativo, pero ahora incide sobre el Sujeto Paciente.'
+            },
+            {
+                q: '14. ¿Cuál es la función de «por su esfuerzo» en «El alumno fue felicitado por el director por su esfuerzo»?',
+                opts: [
+                    'Complemento Agente',
+                    'Complemento Circunstancial de Causa',
+                    'Complemento de Régimen',
+                    'Complemento Indirecto'
+                ],
+                ans: 1,
+                hint: 'En la oración hay dos SPrep con «por»: uno realiza la acción («por el director») y el otro indica el motivo.',
+                exp: '«Por el director» es el C. Agente, mientras que «por su esfuerzo» expresa el motivo → CC de Causa.'
+            },
+            {
+                q: '15. En «Juan, tráeme las gafas de lectura, por favor», ¿cómo se analiza «Juan»?',
+                opts: [
+                    'Es el Sujeto de «tráeme».',
+                    'Es un Vocativo (función extraoracional apelativa); el sujeto de «tráeme» es tácito (Tú).',
+                    'Es un Complemento Directo.',
+                    'Es una aposición explicativa.'
+                ],
+                ans: 1,
+                hint: 'El vocativo va siempre entre comas y sirve para llamar la atención del interlocutor.',
+                exp: 'El Vocativo nunca es el sujeto. Aunque se refieran a la misma persona, «Juan» es Vocativo periférico y el sujeto gramatical es «Tú».'
+            },
+            {
+                q: '16. ¿Cómo distingue la NGLE los verbos intransitivos «nadar / trabajar» de «nacer / llegar / hundirse»?',
+                opts: [
+                    'Los primeros son copulativos y los segundos transitivos.',
+                    'Los primeros son Inergativos (sujeto agente) y los segundos Inacusativos (sujeto paciente/experimentante).',
+                    'Ambos grupos son impersonales.',
+                    'Los segundos llevan siempre CD.'
+                ],
+                ans: 1,
+                hint: 'En «Juan trabaja», Juan controla la acción; en «Juan nació», Juan padece el proceso.',
+                exp: 'La NGLE divide los intransitivos en Inergativos (con sujeto agente controlador) e Inacusativos (sujeto que experimenta un cambio de estado o locación).'
+            },
+            {
+                q: '17. En «El puente fue construido por los ingenieros romanos», el sintagma «por los ingenieros romanos» es:',
+                opts: ['CC de Causa', 'Complemento de Régimen', 'Complemento Agente', 'Sujeto Paciente'],
+                ans: 2,
+                hint: 'En la voz activa («Los ingenieros romanos construyeron el puente»), ese sintagma pasa a ser el Sujeto.',
+                exp: 'En una oración pasiva perifrástica, el SPrep con «por» que ejecuta la acción verbal es el Complemento Agente.'
+            },
+            {
+                q: '18. En «Aquella tarde hacía muchísimo frío en la estación», ¿qué función desempeña «muchísimo frío»?',
+                opts: ['Sujeto', 'Complemento Directo (CD)', 'Atributo', 'CC de Modo'],
+                ans: 1,
+                hint: 'Se puede sustituir por el clítico acusativo «lo»: «Aquella tarde lo hacía».',
+                exp: 'En las impersonales con «hacer + sustantivo climático o temporal», el SN funciona como Complemento Directo («Lo hacía»).'
+            },
+            {
+                q: '19. En «Los dos candidatos se miraron desconfiados durante el debate», confluyen dos fenómenos clave:',
+                opts: [
+                    '«Se» es pasiva refleja y «desconfiados» es Atributo.',
+                    '«Se» es pronombre Recíproco (CD) y «desconfiados» es C. Predicativo del Sujeto.',
+                    '«Se» es Impersonal y «desconfiados» es CD.',
+                    '«Se» es CI y «desconfiados» es CCM.'
+                ],
+                ans: 1,
+                hint: 'Se miraron el uno al otro (mutuamente) y el adjetivo concuerda en plural con «los dos candidatos».',
+                exp: '«Se» funciona como CD recíproco y el adjetivo «desconfiados» predica una actitud de los sujetos mientras se miraban → PVO del Sujeto.'
+            },
+            {
+                q: '20. ¿Cuál es la clasificación completa y exacta de la oración «Ojalá llueva pronto en los embalses del sur»?',
+                opts: [
+                    'Personal, predicativa, activa, transitiva y enunciativa.',
+                    'Impersonal (meteorológica), predicativa, activa, intransitiva y desiderativa.',
+                    'Impersonal refleja, copulativa y dubitativa.',
+                    'Pasiva refleja, intransitiva y exhortativa.'
+                ],
+                ans: 1,
+                hint: 'Fíjate en el verbo meteorológico («llueva») y en el marcador de deseo («ojalá»).',
+                exp: 'Es Impersonal meteorológica (llover), predicativa, activa intransitiva y, por la actitud del hablante («ojalá» + subjuntivo), Desiderativa.'
+            },
+            {
+                q: '21. ¿En cuál de estas oraciones el verbo «ESTAR» NO es copulativo (y por tanto la oración es predicativa)?',
+                opts: [
+                    'Los alumnos están muy motivados este trimestre.',
+                    'El café está demasiado caliente todavía.',
+                    'Las llaves del coche están encima de la estantería.',
+                    'Mi abuela está estupenda de salud.'
+                ],
+                ans: 2,
+                hint: 'Cuando «estar» indica localización espacial («hallarse en un lugar»), no tiene atributo cualitativo sino CC de Lugar (o Atributo locativo según gramáticas).',
+                exp: 'En la tradición escolar, «estar + lugar» carece de atributo cualitativo; en la NGLE se denomina Atributo Locativo porque es argumental.'
+            },
+            {
+                q: '22. En «A esa novela le sobran trescientos páginas», ¿qué funciones cumplen «A esa novela» y «trescientas páginas»?',
+                opts: [
+                    '«A esa novela» es Sujeto y «trescientas páginas» es CD.',
+                    '«A esa novela» es CI (duplicado por «le») y «trescientas páginas» es el Sujeto.',
+                    'Ambas son CD.',
+                    'Es una oración impersonal.'
+                ],
+                ans: 1,
+                hint: 'Pon «trescientas páginas» en singular («una página») y verás que el verbo cambia a «sobra».',
+                exp: '«Trescientas páginas» concuerda en número con «sobran» (Sujeto), mientras que «A esa novela» es el CI.'
+            },
+            {
+                q: '23. En «La alcaldesa inauguró sonriente la feria del libro», «sonriente» es:',
+                opts: ['Complemento del Nombre de alcaldesa', 'Complemento Predicativo del Sujeto', 'C. Predicativo del CD', 'CC de Modo'],
+                ans: 1,
+                hint: 'Es un adjetivo fuera del SN sujeto que describe cómo estaba la alcaldesa en el momento de inaugurar.',
+                exp: 'Al ser un SAdj situado en el predicado que concuerda con el sujeto («Los alcaldes inauguraron sonrientes»), es PVO del Sujeto.'
+            },
+            {
+                q: '24. ¿Qué incorrección gramatical (vulgarismo) contiene la oración «*Habían muchas personas esperando el autobús»?',
+                opts: [
+                    'Falta la preposición «a» delante de «muchas personas».',
+                    'Se ha concordado el verbo impersonal «haber» con su CD («muchas personas») como si fuera el sujeto.',
+                    'El gerundio es incorrecto.',
+                    'Debería llevar «se».'
+                ],
+                ans: 1,
+                hint: 'El verbo «haber» existencial nunca tiene sujeto; lo que «hay» es siempre CD.',
+                exp: 'Al ser «muchas personas» el CD y carecer la oración de sujeto, el verbo debe ir obligatoriamente en singular: «Había muchas personas».'
+            },
+            {
+                q: '25. En «Compramos un regalo de cumpleaños para nuestro tutor», según la NGLE «para nuestro tutor» es:',
+                opts: [
+                    'Complemento Indirecto siempre.',
+                    'CC de Beneficiario (o Destinatario), ya que el verdadero CI solo se encabeza por la preposición «a» («Le compramos un regalo a nuestro tutor»).',
+                    'Complemento de Régimen.',
+                    'Complemento Agente.'
+                ],
+                ans: 1,
+                hint: 'Prueba si puedes decir «*Le compramos un regalo para nuestro tutor» refiriéndote a la misma persona.',
+                exp: 'La NGLE restringe el CI a los SPrep con «a» sustituibles por «le/les», y clasifica los SPrep con «para» como CC de Beneficiario.'
+            },
+            {
+                q: '26. En «La junta directiva dio por terminada la sesión», el bloque «por terminada» funciona como:',
+                opts: ['Complemento Agente', 'CC de Causa', 'C. Predicativo del CD («La dio por terminada»)', 'C. Régimen'],
+                ans: 2,
+                hint: 'Observa cómo «terminada» concuerda en femenino singular con «la sesión» (CD).',
+                exp: 'Es un Complemento Predicativo del CD introducido por la preposición «por» («Dio por terminados los debates»).'
+            },
+            {
+                q: '27. En «Aquel político aspiraba a la presidencia del partido», «a la presidencia del partido» es:',
+                opts: ['Complemento Directo', 'Complemento Indirecto', 'Complemento de Régimen (CRég)', 'CC de Lugar'],
+                ans: 2,
+                hint: 'El verbo «aspirar» en el sentido de pretender un cargo exige la preposición «a» (aspiraba a eso).',
+                exp: 'No se puede sustituir por «la» (*La aspiraba) ni por «le»; conserva la preposición ante pronombre tónico («aspiraba a ello») → C. Régimen.'
+            },
+            {
+                q: '28. ¿Cuál es la función de «de piedra» en «La casa de mis abuelos era de piedra» frente a «Derribaron la casa de piedra»?',
+                opts: [
+                    'En ambas es Complemento del Nombre.',
+                    'En la primera es Atributo («Lo era»); en la segunda es Complemento del Nombre dentro del CD.',
+                    'En ambas es C. Régimen.',
+                    'En la primera es CC de Materia.'
+                ],
+                ans: 1,
+                hint: 'Fíjate en dónde está colocado «de piedra» respecto al verbo copulativo «era».',
+                exp: 'En «era de piedra», el SPrep constituye el predicado nominal con el verbo copulativo (Atributo), mientras que en «la casa de piedra» modifica al núcleo «casa» (CN).'
+            },
+            {
+                q: '29. En «En cuanto a las notas finales, el departamento las publicará el viernes», «En cuanto a las notas finales» es:',
+                opts: ['Sujeto', 'Complemento Directo', 'Modificador Oracional Temático / Tópico inicial', 'C. Régimen'],
+                ans: 2,
+                hint: 'Va separado por coma al inicio para introducir el tema o marco del que se va a hablar.',
+                exp: 'Es un tópico o modificador periférico de marco temático externo al predicado verbal.'
+            },
+            {
+                q: '30. En «Los niños se lavaron las manos rápidamente», ¿cuál es el análisis exacto de los pronombres y sintagmas?',
+                opts: [
+                    'Los niños (Suj) + se (CD) + las manos (CI) + rápidamente (CCM).',
+                    'Los niños (Suj) + se (CI reflexivo) + las manos (CD) + rápidamente (CCM).',
+                    'Oración pasiva refleja con sujeto «las manos».',
+                    'Los niños (Suj) + se lavaron (verbo pronominal) + las manos (Sujeto).'
+                ],
+                ans: 1,
+                hint: '¿Qué cosa lavaron? «Las manos» (Las lavaron = CD). ¿A quién se las lavaron? A sí mismos («se» = CI).',
+                exp: 'Es una oración reflexiva indirecta: «las manos» es el CD y el pronombre reflexivo «se» desempeña la función de CI.'
+            }
+        ];
+
+        let currentTrivIdx = 0;
+        let lifelines = { fifty: 3, hint: 3 };
+
+        function renderTrivQuestion() {
+            const item = trivQuestions[currentTrivIdx];
+            document.getElementById('triv-counter').textContent = `Pregunta ${currentTrivIdx + 1} / ${trivQuestions.length}`;
+            document.getElementById('triv-question').textContent = item.q;
+            document.getElementById('triv-hint-box').style.display = 'none';
+            document.getElementById('triv-feedback').className = 'feedback-panel';
+            document.getElementById('btn-triv-next').style.display = 'none';
+
+            document.getElementById('btn-5050').textContent = `✂️ Comodín 50/50 (${lifelines.fifty})`;
+            document.getElementById('btn-hint').textContent = `💡 Pista Gramatical (${lifelines.hint})`;
+
+            const grid = document.getElementById('triv-options');
+            grid.innerHTML = '';
+            item.opts.forEach((optText, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'option-card';
+                btn.dataset.idx = idx;
+                btn.textContent = optText;
+                btn.onclick = () => selectTrivOption(idx, btn);
+                grid.appendChild(btn);
+            });
+        }
+
+        function use5050() {
+            if (lifelines.fifty <= 0) return;
+            const item = trivQuestions[currentTrivIdx];
+            const cards = Array.from(document.querySelectorAll('#triv-options .option-card'));
+            const wrongCards = cards.filter(c => Number(c.dataset.idx) !== item.ans && !c.classList.contains('disabled'));
+            if (wrongCards.length < 2) return;
+
+            playTone('click');
+            lifelines.fifty--;
+            document.getElementById('btn-5050').textContent = `✂️ Comodín 50/50 (${lifelines.fifty})`;
+            wrongCards.slice(0, 2).forEach(c => {
+                c.classList.add('disabled');
+                c.onclick = null;
+            });
+        }
+
+        function useHint() {
+            if (lifelines.hint <= 0) return;
+            const item = trivQuestions[currentTrivIdx];
+            const box = document.getElementById('triv-hint-box');
+            if (box.style.display === 'block') return;
+
+            playTone('click');
+            lifelines.hint--;
+            document.getElementById('btn-hint').textContent = `💡 Pista Gramatical (${lifelines.hint})`;
+            box.style.display = 'block';
+            box.innerHTML = `<h4>💡 Pista del Departamento de Lengua:</h4><p style="font-size:0.9rem;">${item.hint}</p>`;
+        }
+
+        function selectTrivOption(idx, btnEl) {
+            const item = trivQuestions[currentTrivIdx];
+            const cards = document.querySelectorAll('#triv-options .option-card');
+            cards.forEach(c => c.onclick = null);
+
+            const fb = document.getElementById('triv-feedback');
+            if (idx === item.ans) {
+                playTone('ok');
+                btnEl.classList.add('correct');
+                fb.className = 'feedback-panel show ok';
+                fb.innerHTML = `<strong>✅ ¡Respuesta Correcta! (+25 XP)</strong><br>${item.exp}`;
+                if (state.trivDone < currentTrivIdx + 1) {
+                    state.trivDone = currentTrivIdx + 1;
+                    addXP(25);
+                }
+            } else {
+                playTone('err');
+                btnEl.classList.add('wrong');
+                cards[item.ans].classList.add('correct');
+                fb.className = 'feedback-panel show err';
+                fb.innerHTML = `<strong>❌ Respuesta Incorrecta.</strong><br>${item.exp}`;
+            }
+            document.getElementById('btn-triv-next').style.display = 'inline-flex';
+        }
+
+        function nextTrivQuestion() {
+            currentTrivIdx = (currentTrivIdx + 1) % trivQuestions.length;
+            renderTrivQuestion();
+        }
+
+        /* ==========================================================================
+           JUEGO 5: EL GRAN ROSCO DE LA SINTAXIS (25 LETRAS SIN ESCRIBIR)
+           ========================================================================== */
+        const roscoData = [
+            { l: 'A', cond: 'Empieza por A', q: 'Complemento que acompaña a los verbos copulativos y semicopulativos y se sustituye por el pronombre neutro «lo».', ans: 'Atributo', opts: ['Atributo', 'Adjunto', 'Aposición', 'Agente'] },
+            { l: 'B', cond: 'Empieza por B', q: 'Oración que consta de dos miembros interdependientes: Sujeto y Predicado.', ans: 'Bimembre', opts: ['Bimembre', 'Bipolar', 'Bitransitiva', 'Binaria'] },
+            { l: 'C', cond: 'Empieza por C', q: 'Relación gramatical obligatoria de número y persona que mantienen el núcleo del Sujeto y el verbo.', ans: 'Concordancia', opts: ['Concordancia', 'Cohesión', 'Correferencia', 'Conmutación'] },
+            { l: 'D', cond: 'Empieza por D', q: 'Caso pronominal propio del Complemento Indirecto y de los pronombres superfluos de interés («Se comió todo»).', ans: 'Dativo', opts: ['Dativo', 'Deíctico', 'Dictum', 'Distributivo'] },
+            { l: 'E', cond: 'Empieza por E', q: 'Modalidad oracional con la que el hablante informa objetivamente de un hecho, afirmándolo o negándolo.', ans: 'Enunciativa', opts: ['Enunciativa', 'Exhortativa', 'Eventual', 'Especificativa'] },
+            { l: 'F', cond: 'Empieza por F', q: 'Papel relacional que desempeña un sintagma dentro de la oración (Sujeto, CD, CI, Atributo...).', ans: 'Función', opts: ['Función', 'Flexión', 'Focalización', 'Frase'] },
+            { l: 'G', cond: 'Empieza por G', q: 'Tipo de oración impersonal construida con los verbos «haber, hacer o ser» inmovilizados en 3.ª persona del singular.', ans: 'Gramaticalizada', opts: ['Gramaticalizada', 'Genérica', 'Gerundiva', 'Gradual'] },
+            { l: 'H', cond: 'Empieza por H', q: 'Infinitivo del verbo auxiliar e impersonal por excelencia del español cuya forma existencial de presente es «hay».', ans: 'Haber', opts: ['Haber', 'Hacer', 'Hallar', 'Habitar'] },
+            { l: 'I', cond: 'Empieza por I', q: 'En la NGLE, verbo intransitivo cuyo sujeto no es agente, sino que padece o experimenta el proceso (nacer, morir, caer).', ans: 'Inacusativo', opts: ['Inacusativo', 'Inergativo', 'Impersonal', 'Intensivo'] },
+            { l: 'J', cond: 'Contiene la J', q: 'Término con el que la NGLE denomina a los Complementos Circunstanciales por no estar exigidos por el verbo.', ans: 'Adjunto', opts: ['Adjunto', 'Sujeto', 'Objeto', 'Conjunto'] },
+            { l: 'L', cond: 'Empieza por L', q: 'Fenómeno admitido por la RAE solo cuando «le» sustituye a un CD de persona masculino singular («A Juan le vi»).', ans: 'Leísmo', opts: ['Leísmo', 'Laísmo', 'Loísmo', 'Lexema'] },
+            { l: 'M', cond: 'Empieza por M', q: 'Voz o construcción pronominal donde un proceso fortuito ocurre en el sujeto sin agente externo («El barco se hundió»).', ans: 'Media', opts: ['Media', 'Modal', 'Meteorológica', 'Mutua'] },
+            { l: 'N', cond: 'Empieza por N', q: 'Palabra central de un sintagma que determina su categoría y sus propiedades combinatorias.', ans: 'Núcleo', opts: ['Núcleo', 'Nexo', 'Nombre', 'Neutro'] },
+            { l: 'O', cond: 'Empieza por O', q: 'Participio que designa al sujeto no expreso pero recuperable por las desinencias verbales (también llamado tácito o elíptico).', ans: 'Omitido', opts: ['Omitido', 'Oblicuo', 'Oracional', 'Optativo'] },
+            { l: 'P', cond: 'Empieza por P', q: 'Complemento con doble predicación que modifica a un verbo pleno y concuerda en género y número con el Sujeto o el CD.', ans: 'Predicativo', opts: ['Predicativo', 'Periférico', 'Pronominal', 'Paciente'] },
+            { l: 'Q', cond: 'Empieza por Q', q: 'Verbo pronominal intransitivo («... de algo») que exige siempre la partícula «se» y un Complemento de Régimen con «de».', ans: 'Quejarse', opts: ['Quejarse', 'Querer', 'Quitar', 'Quedar'] },
+            { l: 'R', cond: 'Empieza por R', q: 'Complemento argumental preposicional exigido por el verbo (como en «confiar en», «carecer de» o «aspirar a»).', ans: 'Régimen', opts: ['Régimen', 'Recíproco', 'Reflexivo', 'Relativo'] },
+            { l: 'S', cond: 'Empieza por S', q: 'Clase de verbos como «volverse, ponerse, quedarse o resultar» cuando pierden su significado léxico y llevan Atributo.', ans: 'Semicopulativos', opts: ['Semicopulativos', 'Subordinados', 'Simétricos', 'Suplementarios'] },
+            { l: 'T', cond: 'Empieza por T', q: 'Propiedad de los verbos que seleccionan un Complemento Directo para completar su predicación.', ans: 'Transitividad', opts: ['Transitividad', 'Temporalidad', 'Tonicidad', 'Transformación'] },
+            { l: 'U', cond: 'Empieza por U', q: 'Denominación tradicional de los verbos meteorológicos (llover, nevar) por conjugarse solo en 3.ª persona del singular.', ans: 'Unipersonales', opts: ['Unipersonales', 'Unívocos', 'Universales', 'Unitarios'] },
+            { l: 'V', cond: 'Empieza por V', q: 'Sustantivo extraoracional aislado entre comas que sirve para llamar o apelar al receptor y que nunca funciona como Sujeto.', ans: 'Vocativo', opts: ['Vocativo', 'Verboide', 'Valencial', 'Verbal'] },
+            { l: 'X', cond: 'Contiene la X', q: 'Construcción con «se» donde el sujeto ejecuta y recibe la acción sobre sí mismo («Elena se peina»).', ans: 'Reflexiva', opts: ['Reflexiva', 'Anexa', 'Léxica', 'Expletiva'] },
+            { l: 'Y', cond: 'Contiene la Y', q: 'Forma impersonal de presente de indicativo del verbo «haber» que va siempre acompañada de un CD existencial.', ans: 'Hay', opts: ['Hay', 'Soy', 'Voy', 'Doy'] },
+            { l: 'Z', cond: 'Contiene la Z', q: 'Verbo meteorológico impersonal que significa «caer precipitación de hielo en grano».', ans: 'Granizar', opts: ['Granizar', 'Amenizar', 'Realizar', 'Bautizar'] },
+            { l: 'Ñ', cond: 'Contiene la Ñ', q: 'Verbo intransitivo o de régimen («... con algo») que significa representar cosas en la fantasía mientras se duerme.', ans: 'Soñar', opts: ['Soñar', 'Enseñar', 'Diseñar', 'Bañar'] }
+        ];
+
+        let roscoStatus = [];
+        let currentRoscoIdx = 0;
+
+        function initRosco() {
+            roscoStatus = new Array(roscoData.length).fill('pending');
+            currentRoscoIdx = 0;
+            buildRoscoWheel();
+            renderRoscoTurn();
+        }
+
+        function buildRoscoWheel() {
+            const wheel = document.getElementById('rosco-wheel');
+            wheel.querySelectorAll('.rosco-letter').forEach(el => el.remove());
+
+            const total = roscoData.length;
+            const radius = 165;
+            const center = 195;
+
+            roscoData.forEach((item, i) => {
+                const angle = (i / total) * (2 * Math.PI) - (Math.PI / 2);
+                const x = center + radius * Math.cos(angle) - 18;
+                const y = center + radius * Math.sin(angle) - 18;
+
+                const div = document.createElement('div');
+                div.className = 'rosco-letter';
+                div.id = `rosco-node-${i}`;
+                div.style.left = `${x}px`;
+                div.style.top = `${y}px`;
+                div.textContent = item.l;
+                wheel.appendChild(div);
+            });
+        }
+
+        function renderRoscoTurn() {
+            roscoData.forEach((_, i) => {
+                const node = document.getElementById(`rosco-node-${i}`);
+                if (!node) return;
+                node.className = 'rosco-letter';
+                if (roscoStatus[i] === 'hit') node.classList.add('hit');
+                else if (roscoStatus[i] === 'miss') node.classList.add('miss');
+                if (i === currentRoscoIdx && roscoStatus[i] === 'pending') node.classList.add('current');
+            });
+
+            const hits = roscoStatus.filter(s => s === 'hit').length;
+            const misses = roscoStatus.filter(s => s === 'miss').length;
+            const pending = roscoStatus.filter(s => s === 'pending').length;
+
+            document.getElementById('rosco-stats-mini').textContent = `${hits} ✅ | ${misses} ❌`;
+            document.getElementById('rosco-remaining').textContent = `Pendientes: ${pending}`;
+
+            if (pending === 0) {
+                document.getElementById('rosco-big-letter').textContent = '🏆';
+                document.getElementById('rosco-condition').textContent = '¡Rosco Finalizado!';
+                document.getElementById('rosco-def').innerHTML = `Has completado el Gran Rosco Sintáctico con <strong>${hits} aciertos</strong> y <strong>${misses} fallos</strong>.`;
+                document.getElementById('rosco-options').innerHTML = '';
+                document.getElementById('btn-pasapalabra').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('btn-pasapalabra').style.display = 'inline-flex';
+            const item = roscoData[currentRoscoIdx];
+            document.getElementById('rosco-big-letter').textContent = item.l;
+            document.getElementById('rosco-condition').textContent = item.cond;
+            document.getElementById('rosco-def').textContent = item.q;
+            document.getElementById('rosco-feedback').className = 'feedback-panel';
+
+            const shuffled = [...item.opts].sort(() => Math.random() - 0.5);
+            const grid = document.getElementById('rosco-options');
+            grid.innerHTML = '';
+            shuffled.forEach(opt => {
+                const btn = document.createElement('div');
+                btn.className = 'option-card';
+                btn.textContent = opt;
+                btn.onclick = () => answerRosco(opt);
+                grid.appendChild(btn);
+            });
+        }
+
+        function answerRosco(chosen) {
+            const item = roscoData[currentRoscoIdx];
+            const fb = document.getElementById('rosco-feedback');
+
+            if (chosen === item.ans) {
+                playTone('ok');
+                roscoStatus[currentRoscoIdx] = 'hit';
+                const hitsCount = roscoStatus.filter(s => s === 'hit').length;
+                if (hitsCount > state.roscoDone) {
+                    state.roscoDone = hitsCount;
+                    addXP(25);
+                }
+                fb.className = 'feedback-panel show ok';
+                fb.innerHTML = `<strong>✅ ¡Correcto! (${item.ans})</strong>`;
+            } else {
+                playTone('err');
+                roscoStatus[currentRoscoIdx] = 'miss';
+                fb.className = 'feedback-panel show err';
+                fb.innerHTML = `<strong>❌ Fallo.</strong> La palabra correcta era <strong>${item.ans}</strong>.`;
+            }
+
+            setTimeout(() => {
+                advanceRoscoPointer();
+                renderRoscoTurn();
+            }, 900);
+        }
+
+        function pasapalabraRosco() {
+            playTone('click');
+            advanceRoscoPointer();
+            renderRoscoTurn();
+        }
+
+        function advanceRoscoPointer() {
+            const total = roscoData.length;
+            for (let step = 1; step <= total; step++) {
+                const candidate = (currentRoscoIdx + step) % total;
+                if (roscoStatus[candidate] === 'pending') {
+                    currentRoscoIdx = candidate;
+                    return;
+                }
+            }
+        }
+
+        /* ==========================================================================
+           INICIALIZACIÓN AL CARGAR EL DOCUMENTO
+           ========================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            initAllPageArenas();
+            filterGlossary('all', document.querySelector('.tab-pill'));
+            renderLabSentence();
+            renderSeCase();
+            renderImpCase();
+            renderTrivQuestion();
+            initRosco();
+        });
+    </script>
+</body>
+</html>
